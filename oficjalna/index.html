@@ -17,6 +17,7 @@
   --ink: #18222f;
   --muted: #4a5767;
   --line: #d3dbe4;
+  --logo-bg: #ffffff;
   --brand: #1d3b63;
   --brand-ink: #ffffff;
   --link: #1a4f8f;
@@ -216,6 +217,16 @@ td.num { text-align: right; white-space: nowrap; font-weight: 700; }
 .map-frame { width: 100%; height: 360px; border: 1px solid var(--line); border-radius: var(--r); display: block; }
 .map-card { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); padding: 24px; display: grid; gap: 10px; }
 
+/* Programy i akcje — logotypy mają białe tło, więc pole logo jest białe w każdym motywie */
+.partners { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px 16px; }
+.partners figure { margin: 0; display: grid; gap: 8px; align-content: start; }
+.logo-box { display: grid; place-items: center; height: 128px; padding: 12px; background: var(--logo-bg); border: 1px solid var(--line); border-radius: var(--r); }
+.logo-box { overflow: hidden; }
+.logo-box img { display: block; max-height: 104px; max-width: 100%; width: auto; height: auto; object-fit: contain; }
+.partners figcaption { font-size: var(--s-1); color: var(--muted); line-height: 1.35; text-align: center; }
+.bip-badge { display: inline-block; margin-top: 16px; background: var(--logo-bg); padding: 6px; border-radius: var(--r); }
+.bip-badge img { display: block; width: 52px; height: auto; }
+
 /* Stopka */
 footer { background: var(--brand); color: var(--brand-ink); font-size: var(--s-1); }
 footer a { color: var(--brand-ink); }
@@ -263,8 +274,7 @@ footer p { max-width: none; }
 <div class="util">
   <div class="wrap">
     <ul>
-      <!-- TODO: wpisać adres Biuletynu Informacji Publicznej przedszkola -->
-      <li><a href="https://www.gov.pl/web/bip" target="_blank" rel="noopener">Biuletyn Informacji Publicznej</a></li>
+      <li><a href="http://pm16.koszalin.ibip.pl/public/" target="_blank" rel="noopener">Biuletyn Informacji Publicznej</a></li>
       <li><a href="https://p16.eduportal.koszalin.pl/pl/page/deklaracja-dostepnosci-5" target="_blank" rel="noopener">Deklaracja dostępności</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
@@ -540,6 +550,29 @@ footer p { max-width: none; }
       </div>
     </div>
   </section>
+
+  <section id="programy" aria-labelledby="h-prog">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">Współpraca</p>
+        <h2 id="h-prog">Programy i akcje, w których uczestniczymy</h2>
+      </div>
+      <ul class="partners">
+        <li><figure><span class="logo-box"><img src="img/ekokulturalne-przedszkole.jpg" width="120" height="164" alt="" loading="lazy"></span><figcaption>Ekokulturalne przedszkole</figcaption></figure></li>
+        <li><figure><span class="logo-box"><img src="img/czyste-powietrze.jpg" width="283" height="240" alt="" loading="lazy"></span><figcaption>„Czyste powietrze wokół nas”</figcaption></figure></li>
+        <li><figure><span class="logo-box"><img src="img/zdrowo-jesz.jpg" width="206" height="187" alt="" loading="lazy"></span><figcaption>„Zdrowo jesz – lepiej żyjesz”</figcaption></figure></li>
+        <li><figure><span class="logo-box"><img src="img/przyjaciele-zippiego.jpg" width="241" height="240" alt="" loading="lazy"></span><figcaption>„Przyjaciele Zippiego”</figcaption></figure></li>
+        <li><figure><span class="logo-box"><img src="img/froebel.jpg" width="320" height="90" alt="" loading="lazy"></span><figcaption>Dary Froebla</figcaption></figure></li>
+        <li><figure><span class="logo-box"><img src="img/bezpieczny-przedszkolak.jpg" width="180" height="180" alt="" loading="lazy"></span><figcaption>„Bezpieczny Przedszkolak”</figcaption></figure></li>
+        <li><figure><span class="logo-box"><img src="img/weronika-sherborne.jpg" width="301" height="240" alt="" loading="lazy"></span><figcaption>Metoda Ruchu Rozwijającego Weroniki Sherborne</figcaption></figure></li>
+        <li><figure><span class="logo-box"><img src="img/piekna-nasza-polska.jpg" width="243" height="240" alt="" loading="lazy"></span><figcaption>„Piękna Nasza Polska Cała”</figcaption></figure></li>
+        <li><figure><span class="logo-box"><img src="img/maly-mis.jpg" width="171" height="240" alt="" loading="lazy"></span><figcaption>„Mały Miś w Świecie Wielkiej Literatury”</figcaption></figure></li>
+        <li><figure><span class="logo-box"><img src="img/cala-polska-czyta-dzieciom.jpg" width="320" height="240" alt="" loading="lazy"></span><figcaption>„Cała Polska czyta dzieciom”</figcaption></figure></li>
+        <li><figure><span class="logo-box"><img src="img/z-kultura-mi-do-twarzy.jpg" width="240" height="240" alt="" loading="lazy"></span><figcaption>„Z kulturą mi do twarzy”</figcaption></figure></li>
+        <li><figure><span class="logo-box"><img src="img/zabawa-sztuka.jpg" width="320" height="235" alt="" loading="lazy"></span><figcaption>„Zabawa Sztuka”</figcaption></figure></li>
+      </ul>
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -552,10 +585,11 @@ footer p { max-width: none; }
     <div>
       <h2>Informacje</h2>
       <ul>
-        <li><a href="https://www.gov.pl/web/bip" target="_blank" rel="noopener">Biuletyn Informacji Publicznej</a></li>
+        <li><a href="http://pm16.koszalin.ibip.pl/public/" target="_blank" rel="noopener">Biuletyn Informacji Publicznej</a></li>
         <li><a href="https://p16.eduportal.koszalin.pl/pl/page/deklaracja-dostepnosci-5" target="_blank" rel="noopener">Deklaracja dostępności</a></li>
         <li><a href="https://p16.eduportal.koszalin.pl/pl/page/dokumenty-29/rodo" target="_blank" rel="noopener">Ochrona danych osobowych</a></li>
       </ul>
+      <a class="bip-badge" href="http://pm16.koszalin.ibip.pl/public/" target="_blank" rel="noopener"><img src="img/bip.jpg" width="206" height="240" alt="Biuletyn Informacji Publicznej Przedszkola nr 16 w Koszalinie"></a>
     </div>
     <div>
       <h2>Serwisy</h2>
@@ -563,6 +597,7 @@ footer p { max-width: none; }
         <li><a href="https://iprzedszkole.eduportal.koszalin.pl/Authentication/WyborPanel.aspx" target="_blank" rel="noopener">iPrzedszkole</a></li>
         <li><a href="https://naborp-kandydat.eduportal.koszalin.pl/koszalin" target="_blank" rel="noopener">Nabór elektroniczny</a></li>
         <li><a href="https://p16.eduportal.koszalin.pl/pl/page/galeria-5" target="_blank" rel="noopener">Galeria</a></li>
+        <li><a href="https://www.facebook.com/groups/2113782585306074" target="_blank" rel="noopener">Grupa na Facebooku</a></li>
       </ul>
     </div>
   </div>
