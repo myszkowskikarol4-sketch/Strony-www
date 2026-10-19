@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Przedszkole nr 16 w Koszalinie</title>
+<meta name="description" content="Przedszkole nr 16 w Koszalinie – publiczne przedszkole prowadzone przez Gminę Miasto Koszalin. Rekrutacja, opłaty, organizacja dnia, dokumenty i kontakt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap&subset=latin-ext" rel="stylesheet">
+<style>
+/* Layout: urzędowy układ jednokolumnowy — pasek dostępności, nagłówek instytucji, menu,
+   treść w sekcjach z czytelnymi nagłówkami i tabelami; akcent zieleni parku tylko w detalach. */
+:root {
+  --bg: #ffffff;
+  --surface: #f2f5f8;
+  --ink: #18222f;
+  --muted: #4a5767;
+  --line: #d3dbe4;
+  --brand: #1d3b63;
+  --brand-ink: #ffffff;
+  --link: #1a4f8f;
+  --accent: #2c7a4b;
+  --accent-soft: #e5f2ea;
+  --focus: #ffbf47;
+  --focus-ink: #18222f;
+
+  --f-display: "Lexend", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Source Sans 3", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  --s-1: 0.875rem; --s0: 1.0625rem; --s1: 1.25rem; --s2: 1.5rem; --s3: 2rem; --s4: 2.5rem;
+  --r: 6px;
+  --max: 1160px;
+  --text: 68ch;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #10161e; --surface: #18212c; --ink: #e8edf3; --muted: #aab6c4; --line: #2c3a4a;
+    --brand: #19324f; --brand-ink: #ffffff; --link: #8fbfff; --accent: #6cc794; --accent-soft: #1b3326;
+    --focus: #ffbf47; --focus-ink: #10161e; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #10161e; --surface: #18212c; --ink: #e8edf3; --muted: #aab6c4; --line: #2c3a4a;
+  --brand: #19324f; --brand-ink: #ffffff; --link: #8fbfff; --accent: #6cc794; --accent-soft: #1b3326;
+  --focus: #ffbf47; --focus-ink: #10161e; color-scheme: dark;
+}
+/* Wysoki kontrast (przełącznik w pasku dostępności) */
+:root[data-contrast="high"] {
+  --bg: #000000; --surface: #000000; --ink: #ffff00; --muted: #ffff00; --line: #ffff00;
+  --brand: #000000; --brand-ink: #ffff00; --link: #ffff00; --accent: #ffff00; --accent-soft: #000000;
+  --focus: #ffffff; --focus-ink: #000000; color-scheme: dark;
+}
+:root[data-fs="1"] { font-size: 112.5%; }
+:root[data-fs="2"] { font-size: 125%; }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--f-body); font-size: var(--s0); line-height: 1.6;
+  overflow-x: hidden;
+}
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; line-height: 1.25; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+h2 { font-size: var(--s3); }
+h3 { font-size: var(--s1); }
+p { margin: 0; max-width: var(--text); }
+a { color: var(--link); text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; box-shadow: 0 0 0 6px var(--focus-ink); }
+img, iframe { max-width: 100%; }
+
+.wrap {
+  max-width: calc(var(--max) + 2 * 24px); margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 720px) { .wrap { padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); } }
+
+.skip { position: absolute; left: 16px; top: -100px; z-index: 20; background: var(--focus); color: var(--focus-ink); padding: 10px 16px; font-weight: 700; border-radius: var(--r); }
+.skip:focus { top: calc(env(safe-area-inset-top, 0px) + 8px); }
+
+/* Pasek dostępności */
+.util { background: var(--surface); border-bottom: 1px solid var(--line); font-size: var(--s-1); }
+.util .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; padding-block: 6px; }
+.util ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 20px; }
+.util a { color: var(--ink); }
+.a11y { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.a11y span { color: var(--muted); margin-right: 4px; }
+.a11y button {
+  font: inherit; font-weight: 700; min-width: 40px; min-height: 36px; padding: 2px 10px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: var(--r);
+}
+.a11y button[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
+:root[data-contrast="high"] .a11y button[aria-pressed="true"] { outline: 2px solid var(--ink); }
+.a11y .fs1 { font-size: 1.05em; } .a11y .fs2 { font-size: 1.2em; }
+
+/* Nagłówek instytucji */
+.masthead { background: var(--brand); color: var(--brand-ink); }
+.masthead .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 20px; }
+.inst { display: flex; align-items: center; gap: 16px; color: inherit; text-decoration: none; min-width: 0; }
+.inst-mark {
+  flex: none; width: 56px; height: 56px; border: 2px solid currentColor; border-radius: 50%;
+  display: grid; place-items: center; font-family: var(--f-display); font-weight: 700; font-size: 1.35rem;
+}
+.inst-name { display: flex; flex-direction: column; min-width: 0; }
+.inst-name strong { font-family: var(--f-display); font-weight: 600; font-size: var(--s2); line-height: 1.15; }
+.inst-name small { font-size: var(--s-1); opacity: .9; }
+.menu-btn {
+  display: none; font: inherit; font-weight: 700; color: var(--brand-ink); background: transparent;
+  border: 2px solid currentColor; border-radius: var(--r); padding: 8px 14px; cursor: pointer; min-height: 44px;
+}
+
+nav.main { border-bottom: 1px solid var(--line); background: var(--bg); }
+nav.main ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; }
+nav.main a {
+  display: block; padding: 14px 16px; color: var(--ink); text-decoration: none; font-weight: 600;
+  border-bottom: 3px solid transparent;
+}
+nav.main li:first-child a { padding-left: 0; }
+nav.main a:hover { border-bottom-color: var(--accent); }
+
+/* Treść */
+main section { padding-block: 56px; border-bottom: 1px solid var(--line); }
+main section:last-of-type { border-bottom: 0; }
+.sec-head { display: grid; gap: 8px; margin-bottom: 28px; }
+.kicker { font-size: var(--s-1); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); }
+.lede { color: var(--muted); font-size: var(--s1); }
+
+.intro { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 40px; align-items: start; padding-block: 48px 56px; }
+.intro h1 { font-size: var(--s4); margin-bottom: 16px; }
+.intro p + p { margin-top: 12px; }
+.facts { margin: 0; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.facts div { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 12px; padding: 12px 18px; border-top: 1px solid var(--line); }
+.facts div:first-child { border-top: 0; }
+.facts dt { color: var(--muted); font-size: var(--s-1); padding-top: 2px; }
+.facts dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+
+.quick { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.quick a {
+  display: grid; gap: 2px; padding: 16px 18px; height: 100%;
+  border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: var(--r);
+  text-decoration: none; color: var(--ink); background: var(--bg);
+}
+.quick a:hover { background: var(--accent-soft); }
+.quick strong { font-family: var(--f-display); font-weight: 600; color: var(--link); }
+.quick span { color: var(--muted); font-size: var(--s-1); }
+
+/* Aktualności */
+.news { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; }
+.news li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+.news time { font-variant-numeric: tabular-nums; color: var(--muted); font-size: var(--s-1); padding-top: 3px; }
+.news a { font-weight: 600; }
+.more { display: inline-block; margin-top: 20px; font-weight: 700; }
+
+/* O przedszkolu */
+.cols { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 48px; }
+.prose { display: grid; gap: 14px; }
+.ticks { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 8px; }
+.ticks li { position: relative; padding-left: 26px; max-width: var(--text); }
+.ticks li::before { content: ""; position: absolute; left: 4px; top: .55em; width: 10px; height: 6px; border-left: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(-45deg); }
+aside.panel { border: 1px solid var(--line); border-radius: var(--r); padding: 22px; background: var(--surface); display: grid; gap: 12px; align-self: start; }
+aside.panel blockquote { margin: 0; font-style: italic; }
+aside.panel cite { font-style: normal; color: var(--muted); font-size: var(--s-1); }
+
+/* Tabele */
+.table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r); }
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+caption { text-align: left; padding: 12px 16px; font-weight: 700; background: var(--surface); border-bottom: 1px solid var(--line); }
+th, td { text-align: left; vertical-align: top; padding: 12px 16px; border-top: 1px solid var(--line); }
+thead th { border-top: 0; font-size: var(--s-1); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); background: var(--surface); }
+tbody th { white-space: nowrap; font-weight: 700; width: 9rem; }
+td.num { text-align: right; white-space: nowrap; font-weight: 700; }
+.note { margin-top: 14px; color: var(--muted); font-size: var(--s-1); }
+
+/* Oferta */
+.offer { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.offer h3 { padding-bottom: 8px; border-bottom: 2px solid var(--accent); margin-bottom: 12px; }
+.offer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+.programs { margin-top: 32px; padding-top: 24px; border-top: 1px dashed var(--line); display: grid; gap: 10px; }
+
+.groups { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.groups a { display: flex; align-items: baseline; gap: 12px; padding: 14px 18px; border: 1px solid var(--line); border-radius: var(--r); text-decoration: none; color: var(--ink); }
+.groups a:hover { border-color: var(--link); }
+.groups span { font-family: var(--f-display); color: var(--muted); font-size: var(--s-1); min-width: 2.2rem; }
+.groups strong { color: var(--link); }
+
+/* Rekrutacja */
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: st; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.steps li { counter-increment: st; display: grid; gap: 6px; padding-top: 14px; border-top: 3px solid var(--brand); }
+:root[data-contrast="high"] .steps li { border-top-color: var(--ink); }
+.steps li::before { content: "Krok " counter(st); font-size: var(--s-1); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); }
+.steps p { color: var(--muted); }
+.callout { margin-top: 28px; padding: 18px 20px; border-left: 4px solid var(--accent); background: var(--accent-soft); border-radius: 0 var(--r) var(--r) 0; display: grid; gap: 6px; }
+:root[data-contrast="high"] .callout { border: 2px solid var(--ink); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.btn {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 10px 20px; border-radius: var(--r);
+  font-weight: 700; text-decoration: none; background: var(--brand); color: var(--brand-ink); border: 2px solid var(--brand);
+}
+.btn:hover { text-decoration: underline; }
+.btn.secondary { background: transparent; color: var(--link); border-color: currentColor; }
+:root[data-contrast="high"] .btn { border-color: var(--ink); }
+
+/* Dokumenty */
+.docs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; }
+.docs li { border-top: 1px solid var(--line); }
+.docs a { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; text-decoration: none; color: var(--ink); }
+.docs a:hover .t { text-decoration: underline; }
+.docs .t { font-weight: 600; color: var(--link); }
+.docs .d { color: var(--muted); font-size: var(--s-1); text-align: right; }
+
+/* Kontakt */
+.contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 40px; align-items: start; }
+.contact .facts div { grid-template-columns: 8rem minmax(0, 1fr); }
+.map-frame { width: 100%; height: 360px; border: 1px solid var(--line); border-radius: var(--r); display: block; }
+.map-card { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); padding: 24px; display: grid; gap: 10px; }
+
+/* Stopka */
+footer { background: var(--brand); color: var(--brand-ink); font-size: var(--s-1); }
+footer a { color: var(--brand-ink); }
+footer .wrap { padding-block: 36px; display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)); gap: 32px; }
+footer h2 { font-size: var(--s0); margin-bottom: 10px; }
+footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+footer p { max-width: none; }
+.legal { border-top: 1px solid rgba(255,255,255,.25); }
+:root[data-contrast="high"] .legal { border-top-color: var(--ink); }
+.legal .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 16px; }
+
+@media (max-width: 960px) {
+  .intro, .cols, .contact { grid-template-columns: minmax(0, 1fr); }
+  .offer, .steps { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .quick, .groups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .news, .docs { grid-template-columns: minmax(0, 1fr); }
+  footer .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  footer .wrap > div:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 720px) {
+  .menu-btn { display: inline-block; }
+  nav.main ul { display: none; flex-direction: column; padding-block: 4px; }
+  nav.main.open ul { display: flex; }
+  nav.main li a, nav.main li:first-child a { padding: 12px 0; border-bottom: 1px solid var(--line); }
+  nav.main li:last-child a { border-bottom: 0; }
+  .inst-mark { width: 46px; height: 46px; font-size: 1.1rem; }
+  .inst-name strong { font-size: var(--s1); }
+  .intro h1 { font-size: var(--s3); }
+  h2 { font-size: var(--s2); }
+  main section { padding-block: 40px; }
+  .quick, .groups { grid-template-columns: minmax(0, 1fr); }
+  .facts div, .contact .facts div { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .news li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  footer .wrap { grid-template-columns: minmax(0, 1fr); }
+  .map-frame { height: 280px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#tresc">Przejdź do treści</a>
+
+<div class="util">
+  <div class="wrap">
+    <ul>
+      <!-- TODO: wpisać adres Biuletynu Informacji Publicznej przedszkola -->
+      <li><a href="https://www.gov.pl/web/bip" target="_blank" rel="noopener">Biuletyn Informacji Publicznej</a></li>
+      <li><a href="https://p16.eduportal.koszalin.pl/pl/page/deklaracja-dostepnosci-5" target="_blank" rel="noopener">Deklaracja dostępności</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <div class="a11y" role="group" aria-label="Ustawienia dostępności">
+      <span>Tekst:</span>
+      <button type="button" id="fs0" data-fs="0" aria-pressed="true" aria-label="Normalny rozmiar tekstu">A</button>
+      <button type="button" id="fs1" class="fs1" data-fs="1" aria-pressed="false" aria-label="Większy tekst">A+</button>
+      <button type="button" id="fs2" class="fs2" data-fs="2" aria-pressed="false" aria-label="Największy tekst">A++</button>
+      <span>Kontrast:</span>
+      <button type="button" id="contrast" aria-pressed="false">Wysoki</button>
+    </div>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="inst" href="#tresc">
+      <span class="inst-mark" aria-hidden="true">16</span>
+      <span class="inst-name">
+        <strong>Przedszkole nr 16 w Koszalinie</strong>
+        <small>Placówka publiczna prowadzona przez Gminę Miasto Koszalin</small>
+      </span>
+    </a>
+    <button class="menu-btn" type="button" id="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
+  </div>
+</header>
+
+<nav class="main" id="menu" aria-label="Menu główne">
+  <div class="wrap">
+    <ul>
+      <li><a href="#aktualnosci">Aktualności</a></li>
+      <li><a href="#o-przedszkolu">O przedszkolu</a></li>
+      <li><a href="#organizacja">Organizacja dnia</a></li>
+      <li><a href="#oferta">Oferta i grupy</a></li>
+      <li><a href="#rekrutacja">Rekrutacja</a></li>
+      <li><a href="#oplaty">Opłaty</a></li>
+      <li><a href="#dokumenty">Dokumenty</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="tresc" tabindex="-1">
+  <div class="wrap">
+    <div class="intro">
+      <div>
+        <h1>Przedszkole nr 16 w Koszalinie</h1>
+        <p class="lede">Publiczne przedszkole dla dzieci w wieku 3–6 lat, działające od 8 września 1975 roku na Osiedlu Wańkowicza.</p>
+        <p>Zapewniamy opiekę, wychowanie i edukację w siedmiu salach dydaktycznych, z dużym ogrodem i placem zabaw położonym wśród zieleni parku. Na tej stronie znajdą Państwo informacje o rekrutacji, opłatach, organizacji dnia oraz dokumenty przedszkola.</p>
+      </div>
+      <dl class="facts" aria-label="Najważniejsze informacje">
+        <div><dt>Adres</dt><dd>ul. Kornela Makuszyńskiego 9, 75-442 Koszalin</dd></div>
+        <div><dt>Godziny pracy</dt><dd>poniedziałek–piątek, 6:30–16:30</dd></div>
+        <div><dt>Telefon</dt><dd><a href="tel:+48943452616">94 345 26 16</a></dd></div>
+        <div><dt>E-mail</dt><dd><a href="mailto:p16@przedszkolakoszalin.pl">p16@przedszkolakoszalin.pl</a></dd></div>
+        <div><dt>Dyrektor</dt><dd>Joanna Czerwińska</dd></div>
+      </dl>
+    </div>
+
+    <h2 class="kicker" id="na-skroty">Na skróty dla rodziców</h2>
+    <ul class="quick" aria-labelledby="na-skroty">
+      <li><a href="#rekrutacja"><strong>Rekrutacja</strong><span>Terminy i system naboru</span></a></li>
+      <li><a href="#oplaty"><strong>Opłaty</strong><span>Stawki i zwolnienia</span></a></li>
+      <li><a href="https://iprzedszkole.eduportal.koszalin.pl/Authentication/WyborPanel.aspx" target="_blank" rel="noopener"><strong>iPrzedszkole</strong><span>Logowanie do systemu</span></a></li>
+      <li><a href="#organizacja"><strong>Ramowy rozkład dnia</strong><span>Posiłki, zajęcia, odpoczynek</span></a></li>
+      <li><a href="#dokumenty"><strong>Dokumenty</strong><span>Statut, procedury, RODO</span></a></li>
+      <li><a href="https://my.matterport.com/show/?m=dhJuXBP8sXi" target="_blank" rel="noopener"><strong>Wirtualny spacer</strong><span>Zobacz sale i ogród</span></a></li>
+    </ul>
+  </div>
+
+  <section id="aktualnosci" aria-labelledby="h-aktualnosci">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">Aktualności</p>
+        <h2 id="h-aktualnosci">Ostatnie komunikaty</h2>
+      </div>
+      <ul class="news">
+        <li><time datetime="2026-10-14">14.10.2026</time><a href="https://p16.eduportal.koszalin.pl/pl/art/konkurs-fotograficzny-to-wszystko-polska-moja-mala-ojczyzna-koszalin.5885.html" target="_blank" rel="noopener">Konkurs fotograficzny „To wszystko Polska – moja mała ojczyzna – Koszalin”</a></li>
+        <li><time datetime="2026-01-05">05.01.2026</time><a href="https://p16.eduportal.koszalin.pl/pl/art/wirtualny-spacer-po-naszym-przedszkolu.5288.html" target="_blank" rel="noopener">Wirtualny spacer po naszym przedszkolu</a></li>
+        <li><time datetime="2024-09-03">03.09.2024</time><a href="https://p16.eduportal.koszalin.pl/pl/art/wazna-informacja.4112.html" target="_blank" rel="noopener">Ważna informacja</a></li>
+        <li><time datetime="2024-08-17">17.08.2024</time><a href="https://p16.eduportal.koszalin.pl/pl/art/standardy-ochrony-maloletnich.3098.html" target="_blank" rel="noopener">Standardy Ochrony Małoletnich</a></li>
+      </ul>
+      <a class="more" href="https://p16.eduportal.koszalin.pl/pl/artc/aktualnosci.1.html" target="_blank" rel="noopener">Archiwum aktualności</a>
+    </div>
+  </section>
+
+  <section id="o-przedszkolu" aria-labelledby="h-o">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">O przedszkolu</p>
+        <h2 id="h-o">Misja i priorytety</h2>
+      </div>
+      <div class="cols">
+        <div class="prose">
+          <p>Misją przedszkola jest wychowanie człowieka otwartego na świat, przedsiębiorczego, zaradnego, pogodnego, aktywnego i twórczego, radzącego sobie z niepowodzeniami, przygotowanego do życia w rodzinie i społeczeństwie oraz świadomego własnych narodowych korzeni.</p>
+          <p>Na pierwszym miejscu stawiamy podmiotowość i dobro dziecka, jego wszechstronny rozwój na miarę indywidualnych możliwości oraz właściwe przygotowanie do nauki w szkole.</p>
+          <ul class="ticks">
+            <li>Kadra pedagogiczna stale podnosi kwalifikacje, opracowuje programy własne i innowacje pedagogiczne.</li>
+            <li>Rodzice uczestniczą w życiu przedszkola, pracują w Radzie Rodziców, biorą udział w uroczystościach i zajęciach otwartych.</li>
+            <li>Organizujemy wycieczki, warsztaty, konkursy, akcje prozdrowotne i spotkania z ciekawymi ludźmi.</li>
+            <li>Współpracujemy ze środowiskiem lokalnym oraz instytucjami działającymi na rzecz dziecka i rodziny.</li>
+          </ul>
+        </div>
+        <aside class="panel" aria-label="Motto przedszkola">
+          <blockquote>„Wszystkiego, co naprawdę trzeba wiedzieć, nauczyłem się w przedszkolu – o tym jak żyć, co robić, jak postępować, współżyć z innymi, patrzeć, odczuwać, myśleć, marzyć i wyobrażać sobie lepszy świat.”</blockquote>
+          <cite>Robert Fulghum</cite>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="organizacja" aria-labelledby="h-org">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">Organizacja pracy</p>
+        <h2 id="h-org">Ramowy rozkład dnia</h2>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Godziny</th><th scope="col">Aktywność</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">6:30–8:10</th><td>Schodzenie się dzieci, indywidualne powitanie, zabawy swobodne w kącikach zainteresowań</td></tr>
+            <tr><th scope="row">8:10–8:20</th><td>Zabawy ruchowe i ćwiczenia kształtujące prawidłową postawę ciała</td></tr>
+            <tr><th scope="row">8:20–9:00</th><td>Śniadanie</td></tr>
+            <tr><th scope="row">9:00–11:30</th><td>Zajęcia kierowane i niekierowane, nauka języka obcego przez zabawę, pobyt na świeżym powietrzu</td></tr>
+            <tr><th scope="row">11:30–12:10</th><td>Obiad – drugie danie</td></tr>
+            <tr><th scope="row">12:10–13:20</th><td>Grupy młodsze: odpoczynek. Grupy starsze: zajęcia rozwijające i przygotowanie do szkoły</td></tr>
+            <tr><th scope="row">13:20–13:30</th><td>Zabawa ruchowa lub muzyczno-ruchowa</td></tr>
+            <tr><th scope="row">13:30–14:10</th><td>Obiad – pierwsze danie (zupa) i deser</td></tr>
+            <tr><th scope="row">14:10–16:30</th><td>Zabawy w sali i w ogrodzie, rozwijanie zainteresowań, odbiór dzieci</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Przerwa wakacyjna w 2026 r.: przedszkole nieczynne przez cały lipiec (zarządzenie Prezydenta Miasta Koszalina).</p>
+    </div>
+  </section>
+
+  <section id="oferta" aria-labelledby="h-oferta">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">Oferta edukacyjna</p>
+        <h2 id="h-oferta">Zajęcia i grupy</h2>
+        <p class="lede">Zajęcia dobieramy do potrzeb dzieci, zaleceń poradni oraz oczekiwań rodziców.</p>
+      </div>
+      <div class="offer">
+        <div>
+          <h3>Edukacyjne</h3>
+          <ul>
+            <li>matematyka i logiczne myślenie (kodowanie, ozoboty, dary Froebla)</li>
+            <li>szachy</li>
+            <li>język angielski</li>
+            <li>edukacja ekologiczna i prozdrowotna</li>
+            <li>wycieczki i wyprawy edukacyjne</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Rozwijające uzdolnienia</h3>
+          <ul>
+            <li>zajęcia plastyczne i teatralne</li>
+            <li>muzyka metodą „kolorowych dźwięków”, koncerty</li>
+            <li>wyjazdy do teatru i kina</li>
+            <li>zajęcia ogólnorozwojowe z elementami jogi</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Specjalistyczne</h3>
+          <ul>
+            <li>logopedyczne</li>
+            <li>korekcyjno-kompensacyjne</li>
+            <li>rewalidacyjne</li>
+            <li>rozwijające umiejętności społeczno-emocjonalne</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="programs">
+        <h3>Grupy przedszkolne</h3>
+        <p>Na stronach grup nauczyciele publikują miesięczne zamierzenia wychowawczo-dydaktyczne.</p>
+        <ul class="groups">
+          <li><a href="https://p16.eduportal.koszalin.pl/pl/page/grupy-1/grupa-i-biedronki" target="_blank" rel="noopener"><span>I</span><strong>Biedronki</strong></a></li>
+          <li><a href="https://p16.eduportal.koszalin.pl/pl/page/grupy-1/grupa-ii-motylki" target="_blank" rel="noopener"><span>II</span><strong>Motylki</strong></a></li>
+          <li><a href="https://p16.eduportal.koszalin.pl/pl/page/grupy-1/grupa-iii-pszczolki" target="_blank" rel="noopener"><span>III</span><strong>Pszczółki</strong></a></li>
+          <li><a href="https://p16.eduportal.koszalin.pl/pl/page/grupy-1/grupa-iv-mrowki" target="_blank" rel="noopener"><span>IV</span><strong>Mrówki</strong></a></li>
+          <li><a href="https://p16.eduportal.koszalin.pl/pl/page/grupy-1/grupa-v-zabki" target="_blank" rel="noopener"><span>V</span><strong>Żabki</strong></a></li>
+          <li><a href="https://p16.eduportal.koszalin.pl/pl/page/grupy-1/grupa-vi-wazki" target="_blank" rel="noopener"><span>VI</span><strong>Ważki</strong></a></li>
+        </ul>
+        <a class="more" href="https://p16.eduportal.koszalin.pl/pl/page/dokumenty-29/realizowane-programy" target="_blank" rel="noopener">Wykaz realizowanych programów i projektów 2026/2027</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="rekrutacja" aria-labelledby="h-rek">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">Rekrutacja</p>
+        <h2 id="h-rek">Zapisy do przedszkola</h2>
+        <p class="lede">Rekrutacja do przedszkoli prowadzonych przez Gminę Miasto Koszalin odbywa się elektronicznie. W 2026 r. trwała od 2 do 20 marca.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Zapoznanie z zasadami</h3><p>Instrukcja, harmonogram i kryteria rekrutacji są dostępne w systemie naboru.</p></li>
+        <li><h3>Złożenie wniosku</h3><p>Wniosek wypełnia się w systemie naboru elektronicznego w terminie rekrutacji.</p></li>
+        <li><h3>Potwierdzenie woli</h3><p>Po ogłoszeniu list zakwalifikowanych rodzic potwierdza wolę przyjęcia dziecka.</p></li>
+      </ol>
+      <div class="actions">
+        <a class="btn" href="https://naborp-kandydat.eduportal.koszalin.pl/koszalin" target="_blank" rel="noopener">System naboru elektronicznego</a>
+        <a class="btn secondary" href="https://p16.eduportal.koszalin.pl/pl/page/rekrutacja-28/rekrutacja-dzieci-3-letnich" target="_blank" rel="noopener">Dokumenty rekrutacyjne</a>
+      </div>
+      <div class="callout">
+        <strong>Kontynuacja wychowania przedszkolnego</strong>
+        <p>Rodzice dzieci uczęszczających do przedszkola składają kartę „Potwierdzenie woli uczęszczania dziecka do przedszkola” w terminie wskazanym przez przedszkole (w 2026 r. do 20 lutego). Nie dotyczy dzieci 6-letnich rozpoczynających naukę w klasie I, z wyjątkiem dzieci z odroczonym obowiązkiem szkolnym.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="oplaty" aria-labelledby="h-opl">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">Strefa rodzica</p>
+        <h2 id="h-opl">Opłaty</h2>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Pozycja</th><th scope="col">Podstawa</th><th scope="col" style="text-align:right">Stawka</th></tr></thead>
+          <tbody>
+            <tr><td>Każda rozpoczęta godzina ponad bezpłatny wymiar</td><td>Uchwała Nr V/42/2024 Rady Miejskiej w Koszalinie z 27.06.2024</td><td class="num">1,44 zł</td></tr>
+            <tr><td>Dzienna stawka żywieniowa</td><td>Zarządzenie Prezydenta Miasta Koszalina, obowiązuje od 01.01.2023</td><td class="num">12,00 zł</td></tr>
+            <tr><td>Składka na Radę Rodziców (miesięcznie)</td><td>Regulamin Rady Rodziców; rodzeństwo 30,00 zł</td><td class="num">50,00 zł</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Wniosek o zwolnienie z opłat oraz pełne dokumenty: <a href="https://p16.eduportal.koszalin.pl/pl/page/strefa-rodzica-1/oplaty-za-przedszkole" target="_blank" rel="noopener">Opłaty za przedszkole</a>.</p>
+    </div>
+  </section>
+
+  <section id="dokumenty" aria-labelledby="h-dok">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">Informacja publiczna</p>
+        <h2 id="h-dok">Dokumenty przedszkola</h2>
+      </div>
+      <ul class="docs">
+        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/dokumenty-29/statut-przedszkola" target="_blank" rel="noopener"><span class="t">Statut Przedszkola</span><span class="d">dokument</span></a></li>
+        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/dokumenty-29/koncepcja-pracy-przedszkola" target="_blank" rel="noopener"><span class="t">Koncepcja Pracy Przedszkola</span><span class="d">2023–2028, PDF</span></a></li>
+        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/dokumenty-29/procedury-regulaminy" target="_blank" rel="noopener"><span class="t">Procedury i regulaminy</span><span class="d">dokumenty</span></a></li>
+        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/dokumenty-29/podstawa-programowa-wychowania-przedszkolnego" target="_blank" rel="noopener"><span class="t">Podstawa programowa wychowania przedszkolnego</span><span class="d">dokument</span></a></li>
+        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/strefa-rodzica-1/standardy-ochrony-maloletnich" target="_blank" rel="noopener"><span class="t">Standardy Ochrony Małoletnich</span><span class="d">dokument</span></a></li>
+        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/dokumenty-29/rodo" target="_blank" rel="noopener"><span class="t">Ochrona danych osobowych (RODO)</span><span class="d">klauzule</span></a></li>
+        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/strefa-rodzica-1/do-pobrania" target="_blank" rel="noopener"><span class="t">Druki do pobrania</span><span class="d">wnioski, oświadczenia</span></a></li>
+        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/deklaracja-dostepnosci-5" target="_blank" rel="noopener"><span class="t">Deklaracja dostępności</span><span class="d">strona</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="kontakt" aria-labelledby="h-kontakt">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">Kontakt</p>
+        <h2 id="h-kontakt">Dane kontaktowe</h2>
+      </div>
+      <div class="contact">
+        <dl class="facts">
+          <div><dt>Nazwa</dt><dd>Przedszkole nr 16 w Koszalinie</dd></div>
+          <div><dt>Adres</dt><dd>ul. Kornela Makuszyńskiego 9<br>75-442 Koszalin</dd></div>
+          <div><dt>Telefon / fax</dt><dd><a href="tel:+48943452616">94 345 26 16</a></dd></div>
+          <div><dt>E-mail</dt><dd><a href="mailto:p16@przedszkolakoszalin.pl">p16@przedszkolakoszalin.pl</a></dd></div>
+          <div><dt>Godziny pracy</dt><dd>pon.–pt. 6:30–16:30</dd></div>
+          <div><dt>NIP</dt><dd>669-23-10-960</dd></div>
+          <div><dt>REGON</dt><dd>320945603</dd></div>
+        </dl>
+        <div>
+          <iframe class="map-frame" title="Mapa dojazdu – ul. Kornela Makuszyńskiego 9, Koszalin" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=16.1835%2C54.1968%2C16.1975%2C54.2028&amp;layer=mapnik&amp;marker=54.19985%2C16.19057"></iframe><p class="note"><a href="https://www.google.com/maps/search/?api=1&amp;query=Przedszkole+nr+16+Kornela+Makuszy%C5%84skiego+9+Koszalin" target="_blank" rel="noopener">Wyznacz trasę w Mapach Google</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h2>Przedszkole nr 16 w Koszalinie</h2>
+      <p>ul. Kornela Makuszyńskiego 9, 75-442 Koszalin<br>tel. 94 345 26 16 · p16@przedszkolakoszalin.pl</p>
+      <p>Organ prowadzący: Gmina Miasto Koszalin</p>
+    </div>
+    <div>
+      <h2>Informacje</h2>
+      <ul>
+        <li><a href="https://www.gov.pl/web/bip" target="_blank" rel="noopener">Biuletyn Informacji Publicznej</a></li>
+        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/deklaracja-dostepnosci-5" target="_blank" rel="noopener">Deklaracja dostępności</a></li>
+        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/dokumenty-29/rodo" target="_blank" rel="noopener">Ochrona danych osobowych</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Serwisy</h2>
+      <ul>
+        <li><a href="https://iprzedszkole.eduportal.koszalin.pl/Authentication/WyborPanel.aspx" target="_blank" rel="noopener">iPrzedszkole</a></li>
+        <li><a href="https://naborp-kandydat.eduportal.koszalin.pl/koszalin" target="_blank" rel="noopener">Nabór elektroniczny</a></li>
+        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/galeria-5" target="_blank" rel="noopener">Galeria</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="legal">
+    <div class="wrap">
+      <p>© <span id="rok">2026</span> Przedszkole nr 16 w Koszalinie</p>
+      <p>Data ostatniej aktualizacji: <time datetime="2026-10-19">19.10.2026</time></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function save(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+  // Rozmiar tekstu
+  var fsButtons = document.querySelectorAll('[data-fs]');
+  function setFs(v) {
+    if (v === '0') root.removeAttribute('data-fs'); else root.setAttribute('data-fs', v);
+    fsButtons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-fs') === v)); });
+    save('p16-fs', v);
+  }
+  fsButtons.forEach(function (b) { b.addEventListener('click', function () { setFs(b.getAttribute('data-fs')); }); });
+  setFs(load('p16-fs') || '0');
+
+  // Wysoki kontrast
+  var contrast = document.getElementById('contrast');
+  function setContrast(on) {
+    if (on) root.setAttribute('data-contrast', 'high'); else root.removeAttribute('data-contrast');
+    contrast.setAttribute('aria-pressed', String(on));
+    save('p16-contrast', on ? '1' : '0');
+  }
+  contrast.addEventListener('click', function () { setContrast(contrast.getAttribute('aria-pressed') !== 'true'); });
+  setContrast(load('p16-contrast') === '1');
+
+  // Menu mobilne
+  var menuBtn = document.getElementById('menu-btn');
+  var menu = document.getElementById('menu');
+  menuBtn.addEventListener('click', function () {
+    var open = menu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { menu.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); });
+  });
+
+  var rok = document.getElementById('rok');
+  if (rok) rok.textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
