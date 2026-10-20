@@ -214,13 +214,28 @@ td.num { text-align: right; white-space: nowrap; font-weight: 700; }
 .btn.secondary { background: transparent; color: var(--link); border-color: currentColor; }
 :root[data-contrast="high"] .btn { border-color: var(--ink); }
 
-/* Dokumenty */
-.docs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; }
-.docs li { border-top: 1px solid var(--line); }
-.docs a { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; text-decoration: none; color: var(--ink); }
-.docs a:hover .t { text-decoration: underline; }
-.docs .t { font-weight: 600; color: var(--link); }
-.docs .d { color: var(--muted); font-size: var(--s-1); text-align: right; }
+/* Dokumenty do pobrania */
+.doc-search { display: grid; gap: 6px; max-width: 34rem; margin-bottom: 20px; }
+.doc-search label { font-weight: 700; }
+.doc-search input { font: inherit; color: var(--ink); background: var(--bg); border: 2px solid var(--line); border-radius: var(--r); padding: 10px 14px; min-height: 44px; width: 100%; }
+.doc-search input:focus { border-color: var(--link); }
+.doc-count { color: var(--muted); font-size: var(--s-1); }
+.doc-groups { display: grid; gap: 10px; }
+.doc-group { border: 1px solid var(--line); border-radius: var(--r); }
+.doc-group summary { cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 18px; font-family: var(--f-display); font-weight: 600; background: var(--surface); border-radius: var(--r); }
+.doc-group[open] summary { border-bottom: 1px solid var(--line); border-radius: var(--r) var(--r) 0 0; }
+.doc-group .n { font-family: var(--f-body); font-size: var(--s-1); color: var(--muted); font-weight: 400; }
+.files { list-style: none; margin: 0; padding: 0 18px; }
+.files li { display: grid; grid-template-columns: 3.4rem minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 12px 0; border-top: 1px solid var(--line); }
+.files li:first-child { border-top: 0; }
+.files a { font-weight: 600; }
+.fmt { font-size: 0.72rem; font-weight: 700; letter-spacing: .05em; text-align: center; padding: 3px 0; border-radius: 4px; border: 1.5px solid currentColor; }
+.fmt-pdf { color: #b42318; } .fmt-docx { color: var(--link); }
+:root[data-contrast="high"] .fmt { color: var(--ink); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not([data-contrast="high"]) .fmt-pdf { color: #ff8a80; } }
+:root[data-theme="dark"]:not([data-contrast="high"]) .fmt-pdf { color: #ff8a80; }
+.sz { color: var(--muted); font-size: var(--s-1); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.doc-empty { margin-top: 16px; }
 
 /* Kontakt */
 .contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 40px; align-items: start; }
@@ -271,6 +286,8 @@ footer p { max-width: none; }
   .quick, .groups { grid-template-columns: minmax(0, 1fr); }
   .facts div, .contact .facts div { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .news li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .files li { grid-template-columns: 3.4rem minmax(0, 1fr); row-gap: 2px; }
+  .files .sz { grid-column: 2; }
   footer .wrap { grid-template-columns: minmax(0, 1fr); }
   .map-frame { height: 280px; }
 }
@@ -351,7 +368,7 @@ footer p { max-width: none; }
       <li><a href="#oplaty"><strong>Opłaty</strong><span>Stawki i zwolnienia</span></a></li>
       <li><a href="https://iprzedszkole.eduportal.koszalin.pl/Authentication/WyborPanel.aspx" target="_blank" rel="noopener"><strong>iPrzedszkole</strong><span>Logowanie do systemu</span></a></li>
       <li><a href="#organizacja"><strong>Ramowy rozkład dnia</strong><span>Posiłki, zajęcia, odpoczynek</span></a></li>
-      <li><a href="#dokumenty"><strong>Dokumenty</strong><span>Statut, procedury, RODO</span></a></li>
+      <li><a href="#dokumenty"><strong>Dokumenty do pobrania</strong><span>Druki, statut, procedury</span></a></li>
       <li><a href="https://my.matterport.com/show/?m=dhJuXBP8sXi" target="_blank" rel="noopener"><strong>Wirtualny spacer</strong><span>Zobacz sale i ogród</span></a></li>
     </ul>
   </div>
@@ -630,7 +647,7 @@ footer p { max-width: none; }
       </ol>
       <div class="actions">
         <a class="btn" href="https://naborp-kandydat.eduportal.koszalin.pl/koszalin" target="_blank" rel="noopener">System naboru elektronicznego</a>
-        <a class="btn secondary" href="https://p16.eduportal.koszalin.pl/pl/page/rekrutacja-28/rekrutacja-dzieci-3-letnich" target="_blank" rel="noopener">Dokumenty rekrutacyjne</a>
+        <a class="btn secondary" href="#dok-rekrutacja">Dokumenty rekrutacyjne</a>
       </div>
       <div class="callout">
         <strong>Kontynuacja wychowania przedszkolnego</strong>
@@ -655,7 +672,7 @@ footer p { max-width: none; }
           </tbody>
         </table>
       </div>
-      <p class="note">Wniosek o zwolnienie z opłat oraz pełne dokumenty: <a href="https://p16.eduportal.koszalin.pl/pl/page/strefa-rodzica-1/oplaty-za-przedszkole" target="_blank" rel="noopener">Opłaty za przedszkole</a>.</p>
+      <p class="note">Wniosek o zwolnienie z opłat, uchwała i zarządzenia: <a href="#dok-oplaty">Dokumenty do pobrania – opłaty</a>.</p>
     </div>
   </section>
 
@@ -663,18 +680,103 @@ footer p { max-width: none; }
     <div class="wrap">
       <div class="sec-head">
         <p class="kicker">Informacja publiczna</p>
-        <h2 id="h-dok">Dokumenty przedszkola</h2>
+        <h2 id="h-dok">Dokumenty do pobrania</h2>
+        <p class="lede">Statut, procedury, druki dla rodziców i dokumenty rekrutacyjne w jednym miejscu. Pliki PDF otworzą się w przeglądarce, pliki DOCX można edytować w edytorze tekstu.</p>
       </div>
-      <ul class="docs">
-        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/dokumenty-29/statut-przedszkola" target="_blank" rel="noopener"><span class="t">Statut Przedszkola</span><span class="d">dokument</span></a></li>
-        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/dokumenty-29/koncepcja-pracy-przedszkola" target="_blank" rel="noopener"><span class="t">Koncepcja Pracy Przedszkola</span><span class="d">2023–2028, PDF</span></a></li>
-        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/dokumenty-29/procedury-regulaminy" target="_blank" rel="noopener"><span class="t">Procedury i regulaminy</span><span class="d">dokumenty</span></a></li>
-        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/dokumenty-29/podstawa-programowa-wychowania-przedszkolnego" target="_blank" rel="noopener"><span class="t">Podstawa programowa wychowania przedszkolnego</span><span class="d">dokument</span></a></li>
-        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/strefa-rodzica-1/standardy-ochrony-maloletnich" target="_blank" rel="noopener"><span class="t">Standardy Ochrony Małoletnich</span><span class="d">dokument</span></a></li>
-        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/dokumenty-29/rodo" target="_blank" rel="noopener"><span class="t">Ochrona danych osobowych (RODO)</span><span class="d">klauzule</span></a></li>
-        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/strefa-rodzica-1/do-pobrania" target="_blank" rel="noopener"><span class="t">Druki do pobrania</span><span class="d">wnioski, oświadczenia</span></a></li>
-        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/deklaracja-dostepnosci-5" target="_blank" rel="noopener"><span class="t">Deklaracja dostępności</span><span class="d">strona</span></a></li>
-      </ul>
+      <div class="doc-search">
+        <label for="doc-filter">Szukaj dokumentu</label>
+        <input type="search" id="doc-filter" placeholder="np. upoważnienie, statut, klauzula" autocomplete="off">
+        <p class="doc-count" id="doc-count" aria-live="polite">46 plików w 8 kategoriach</p>
+      </div>
+      <div class="doc-groups">
+        <details class="doc-group" id="dok-przedszkole" open>
+          <summary><span>Dokumenty przedszkola</span><span class="n">3</span></summary>
+          <ul class="files">
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/statut-przedszkola-2026.pdf" target="_blank" rel="noopener">Statut Przedszkola nr 16 (2026)</a><span class="sz">249 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/koncepcja-pracy-przedszkola-2023-2028.pdf" target="_blank" rel="noopener">Koncepcja Pracy Przedszkola na lata 2023–2028</a><span class="sz">634 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/podstawa-programowa-2026.pdf" target="_blank" rel="noopener">Podstawa programowa wychowania przedszkolnego (2026)</a><span class="sz">4,2 MB</span></li>
+          </ul>
+        </details>
+        <details class="doc-group" id="dok-procedury">
+          <summary><span>Procedury i regulaminy</span><span class="n">7</span></summary>
+          <ul class="files">
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/procedura-przyprowadzania-i-odbierania-dziecka-2025-2026.pdf" target="_blank" rel="noopener">Procedura przyprowadzania i odbierania dziecka 2025/2026</a><span class="sz">288 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/regulamin-spacerow-i-wycieczek-2025-2026.pdf" target="_blank" rel="noopener">Regulamin spacerów i wycieczek 2025/2026</a><span class="sz">419 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/procedura-kontaktow-z-rodzicami-2025-2026.pdf" target="_blank" rel="noopener">Procedura kontaktów z rodzicami 2025/2026</a><span class="sz">422 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/procedura-pomocy-psychologiczno-pedagogicznej-2025-2026.pdf" target="_blank" rel="noopener">Procedura udzielania pomocy psychologiczno-pedagogicznej 2025/2026</a><span class="sz">458 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/standardy-ochrony-maloletnich.pdf" target="_blank" rel="noopener">Standardy Ochrony Małoletnich w Przedszkolu nr 16</a><span class="sz">799 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/zarzadzenie-standardy-ochrony-maloletnich.pdf" target="_blank" rel="noopener">Zarządzenie dyrektora w sprawie Standardów Ochrony Małoletnich</a><span class="sz">82 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/regulamin-rady-rodzicow.pdf" target="_blank" rel="noopener">Regulamin Rady Rodziców</a><span class="sz">224 kB</span></li>
+          </ul>
+        </details>
+        <details class="doc-group" id="dok-druki" open>
+          <summary><span>Druki dla rodziców</span><span class="n">8</span></summary>
+          <ul class="files">
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/upowaznienie-do-odbioru-dziecka-2026-2027.pdf" target="_blank" rel="noopener">Upoważnienie do odbioru dziecka 2026/2027</a><span class="sz">58 kB</span></li>
+            <li><span class="fmt fmt-docx">DOCX</span><a href="pliki/oswiadczenia-i-zgody-rodzicow-2026-2027.docx" target="_blank" rel="noopener">Oświadczenia i zgody rodziców 2026/2027</a><span class="sz">31 kB</span></li>
+            <li><span class="fmt fmt-docx">DOCX</span><a href="pliki/zgoda-religia-2026-2027.docx" target="_blank" rel="noopener">Zgoda na uczestnictwo w zajęciach religii 2026/2027</a><span class="sz">16 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/oswiadczenie-zamieszkanie-dziecka-2025.pdf" target="_blank" rel="noopener">Oświadczenie o miejscu zamieszkania dziecka (2025)</a><span class="sz">612 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/wniosek-o-wydanie-informacji-o-dziecku.pdf" target="_blank" rel="noopener">Wniosek o wydanie informacji o dziecku</a><span class="sz">264 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/wniosek-zwolnienie-z-oplat.pdf" target="_blank" rel="noopener">Wniosek o zwolnienie z opłat</a><span class="sz">66 kB</span></li>
+            <li><span class="fmt fmt-docx">DOCX</span><a href="pliki/wniosek-zwolnienie-z-oplat.docx" target="_blank" rel="noopener">Wniosek o zwolnienie z opłat (wersja do edycji)</a><span class="sz">22 kB</span></li>
+            <li><span class="fmt fmt-docx">DOCX</span><a href="pliki/oswiadczenie-oplaty.docx" target="_blank" rel="noopener">Oświadczenie dotyczące opłat</a><span class="sz">19 kB</span></li>
+          </ul>
+        </details>
+        <details class="doc-group" id="dok-oplaty">
+          <summary><span>Opłaty i organizacja</span><span class="n">6</span></summary>
+          <ul class="files">
+            <li><span class="fmt fmt-docx">DOCX</span><a href="pliki/informacja-o-oplatach.docx" target="_blank" rel="noopener">Informacja dla rodziców o opłatach za pobyt i wyżywienie</a><span class="sz">14 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/uchwala-oplata-przedszkolna-2024.pdf" target="_blank" rel="noopener">Uchwała Rady Miejskiej w sprawie opłaty przedszkolnej (2024)</a><span class="sz">1,4 MB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/zarzadzenie-stawka-zywieniowa.pdf" target="_blank" rel="noopener">Zarządzenie w sprawie stawki żywieniowej</a><span class="sz">163 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/zarzadzenie-przerwa-wakacyjna.pdf" target="_blank" rel="noopener">Zarządzenie w sprawie przerwy wakacyjnej</a><span class="sz">251 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/zasady-iprzedszkole.pdf" target="_blank" rel="noopener">Zasady korzystania z systemu iPrzedszkole</a><span class="sz">154 kB</span></li>
+            <li><span class="fmt fmt-docx">DOCX</span><a href="pliki/instrukcja-logowania-iprzedszkole.docx" target="_blank" rel="noopener">Instrukcja logowania do systemu iPrzedszkole</a><span class="sz">16 kB</span></li>
+          </ul>
+        </details>
+        <details class="doc-group" id="dok-rekrutacja">
+          <summary><span>Rekrutacja</span><span class="n">6</span></summary>
+          <ul class="files">
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/harmonogram-rekrutacji-2026.pdf" target="_blank" rel="noopener">Zarządzenie w sprawie harmonogramu rekrutacji 2026</a><span class="sz">249 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/kryteria-rekrutacji.pdf" target="_blank" rel="noopener">Kryteria rekrutacji do przedszkoli</a><span class="sz">418 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/skrot-informacji-o-naborze.pdf" target="_blank" rel="noopener">Skrót informacji o naborze</a><span class="sz">278 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rekrutacja-instrukcja.pdf" target="_blank" rel="noopener">Rekrutacja do przedszkoli – instrukcja</a><span class="sz">142 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/instrukcja-rekrutacyjna-przedszkola.pdf" target="_blank" rel="noopener">Instrukcja rekrutacyjna dla przedszkoli</a><span class="sz">290 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/podrecznik-dla-kandydata.pdf" target="_blank" rel="noopener">Podręcznik dla kandydata (system naboru)</a><span class="sz">2,8 MB</span></li>
+          </ul>
+        </details>
+        <details class="doc-group" id="dok-rodo">
+          <summary><span>Ochrona danych osobowych (RODO)</span><span class="n">9</span></summary>
+          <ul class="files">
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rodo-informacja-o-przetwarzaniu-danych.pdf" target="_blank" rel="noopener">Informacja o przetwarzaniu danych osobowych w Przedszkolu nr 16</a><span class="sz">250 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rodo-klauzula-dziecko-i-rodzice.pdf" target="_blank" rel="noopener">Klauzula informacyjna – dziecko i rodzice</a><span class="sz">68 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rodo-klauzula-osoby-odbierajace.pdf" target="_blank" rel="noopener">Klauzula informacyjna – osoby odbierające dziecko</a><span class="sz">66 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rodo-klauzula-przedszkole-zastepcze.pdf" target="_blank" rel="noopener">Klauzula informacyjna – przedszkole zastępcze</a><span class="sz">66 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rodo-klauzula-kontrahenci.pdf" target="_blank" rel="noopener">Klauzula informacyjna – kontrahenci</a><span class="sz">64 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rodo-klauzula-pracownik.pdf" target="_blank" rel="noopener">Klauzula informacyjna – pracownik</a><span class="sz">69 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rodo-klauzula-rekrutacja-pedagogiczny.pdf" target="_blank" rel="noopener">Klauzula informacyjna – rekrutacja, pracownik pedagogiczny</a><span class="sz">88 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rodo-klauzula-rekrutacja-niepedagogiczny.pdf" target="_blank" rel="noopener">Klauzula informacyjna – rekrutacja, pracownik niepedagogiczny</a><span class="sz">67 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rodo-klauzula-rejestr.pdf" target="_blank" rel="noopener">Klauzula informacyjna – rejestr sprawców przestępstw na tle seksualnym</a><span class="sz">435 kB</span></li>
+          </ul>
+        </details>
+        <details class="doc-group" id="dok-grupy">
+          <summary><span>Zamierzenia wychowawczo-dydaktyczne grup (wrzesień)</span><span class="n">6</span></summary>
+          <ul class="files">
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/grupa-1-biedronki-wrzesien.pdf" target="_blank" rel="noopener">Grupa I – Biedronki</a><span class="sz">193 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/grupa-2-motylki-wrzesien.pdf" target="_blank" rel="noopener">Grupa II – Motylki</a><span class="sz">380 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/grupa-3-pszczolki-wrzesien.pdf" target="_blank" rel="noopener">Grupa III – Pszczółki</a><span class="sz">212 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/grupa-4-mrowki-wrzesien.pdf" target="_blank" rel="noopener">Grupa IV – Mrówki</a><span class="sz">443 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/grupa-5-zabki-wrzesien.pdf" target="_blank" rel="noopener">Grupa V – Żabki</a><span class="sz">227 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/grupa-6-wazki-wrzesien.pdf" target="_blank" rel="noopener">Grupa VI – Ważki</a><span class="sz">242 kB</span></li>
+          </ul>
+        </details>
+        <details class="doc-group" id="dok-archiwum">
+          <summary><span>Dokumenty archiwalne</span><span class="n">1</span></summary>
+          <ul class="files">
+            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/archiwum-procedura-covid-19-2021.pdf" target="_blank" rel="noopener">Procedura bezpieczeństwa w czasie pandemii COVID-19 (2021)</a><span class="sz">2,7 MB</span></li>
+          </ul>
+        </details>
+      </div>
+      <p class="doc-empty" id="doc-empty" hidden>Nie znaleziono dokumentu o tej nazwie. Spróbuj innego słowa albo <a href="#kontakt">skontaktuj się z przedszkolem</a>.</p>
     </div>
   </section>
 
@@ -737,7 +839,7 @@ footer p { max-width: none; }
       <ul>
         <li><a href="http://pm16.koszalin.ibip.pl/public/" target="_blank" rel="noopener">Biuletyn Informacji Publicznej</a></li>
         <li><a href="https://p16.eduportal.koszalin.pl/pl/page/deklaracja-dostepnosci-5" target="_blank" rel="noopener">Deklaracja dostępności</a></li>
-        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/dokumenty-29/rodo" target="_blank" rel="noopener">Ochrona danych osobowych</a></li>
+        <li><a href="#dok-rodo">Ochrona danych osobowych</a></li>
       </ul>
       <a class="bip-badge" href="http://pm16.koszalin.ibip.pl/public/" target="_blank" rel="noopener"><img src="img/bip.jpg" width="206" height="240" alt="Biuletyn Informacji Publicznej Przedszkola nr 16 w Koszalinie"></a>
     </div>
@@ -795,6 +897,41 @@ footer p { max-width: none; }
   menu.querySelectorAll('a').forEach(function (a) {
     a.addEventListener('click', function () { menu.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); });
   });
+
+  // Dokumenty: wyszukiwarka i otwieranie kategorii z linków
+  var filter = document.getElementById('doc-filter');
+  var groups = document.querySelectorAll('.doc-group');
+  var count = document.getElementById('doc-count');
+  var empty = document.getElementById('doc-empty');
+  var total = document.querySelectorAll('.files li').length;
+  var initialOpen = [];
+  groups.forEach(function (g) { initialOpen.push(g.open); });
+  function norm(s) { return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ł/g, 'l'); }
+  filter.addEventListener('input', function () {
+    var q = norm(filter.value.trim()); var shown = 0;
+    groups.forEach(function (g, i) {
+      var hits = 0;
+      g.querySelectorAll('li').forEach(function (li) {
+        var ok = !q || norm(li.textContent + ' ' + g.querySelector('summary').textContent).indexOf(q) !== -1;
+        li.hidden = !ok; if (ok) hits++;
+      });
+      g.hidden = hits === 0;
+      g.open = q ? hits > 0 : initialOpen[i];
+      shown += hits;
+    });
+    count.textContent = q ? 'Znaleziono: ' + shown + ' z ' + total : count.getAttribute('data-default');
+    empty.hidden = shown !== 0;
+  });
+  count.setAttribute('data-default', count.textContent);
+  function openFromHash() {
+    var id = location.hash.slice(1); var el = id && document.getElementById(id);
+    if (el && el.classList.contains('doc-group')) el.open = true;
+  }
+  window.addEventListener('hashchange', openFromHash);
+  document.querySelectorAll('a[href^="#dok-"]').forEach(function (a) {
+    a.addEventListener('click', function () { var el = document.getElementById(a.getAttribute('href').slice(1)); if (el) el.open = true; });
+  });
+  openFromHash();
 
   var rok = document.getElementById('rok');
   if (rok) rok.textContent = new Date().getFullYear();
