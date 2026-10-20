@@ -86,7 +86,7 @@ img, iframe { max-width: 100%; }
 .util { background: var(--surface); border-bottom: 1px solid var(--line); font-size: var(--s-1); }
 .util .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; padding-block: 6px; }
 .util ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 20px; }
-.util a { color: var(--ink); }
+.util a { color: var(--ink); display: inline-flex; align-items: center; min-height: 36px; }
 .a11y { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
 .a11y span { color: var(--muted); margin-right: 4px; }
 .a11y button {
@@ -99,6 +99,8 @@ img, iframe { max-width: 100%; }
 
 /* Nagłówek instytucji */
 .masthead { background: var(--brand); color: var(--brand-ink); }
+html { scroll-padding-top: calc(var(--sticky-h, 0px) + env(safe-area-inset-top, 0px) + 12px); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--brand); }
 .masthead .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 20px; }
 .inst { display: flex; align-items: center; gap: 16px; color: inherit; text-decoration: none; min-width: 0; }
 .inst-mark {
@@ -112,7 +114,8 @@ img, iframe { max-width: 100%; }
   border: 2px solid currentColor; border-radius: var(--r); padding: 8px 14px; cursor: pointer; min-height: 44px;
 }
 
-nav.main { border-bottom: 1px solid var(--line); background: var(--bg); }
+nav.main { border-bottom: 1px solid var(--line); background: var(--bg); position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; }
+nav.main.stuck { box-shadow: 0 6px 16px rgba(16, 24, 40, .08); }
 nav.main ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; }
 nav.main a {
   display: block; padding: 14px 16px; color: var(--ink); text-decoration: none; font-weight: 600;
@@ -226,9 +229,12 @@ td.num { text-align: right; white-space: nowrap; font-weight: 700; }
 .doc-group[open] summary { border-bottom: 1px solid var(--line); border-radius: var(--r) var(--r) 0 0; }
 .doc-group .n { font-family: var(--f-body); font-size: var(--s-1); color: var(--muted); font-weight: 400; }
 .files { list-style: none; margin: 0; padding: 0 18px; }
-.files li { display: grid; grid-template-columns: 3.4rem minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 12px 0; border-top: 1px solid var(--line); }
+.files li { display: grid; grid-template-columns: 3.4rem minmax(0, 1fr) auto auto; gap: 14px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
 .files li:first-child { border-top: 0; }
-.files a { font-weight: 600; }
+.files .ft { font-weight: 600; padding-block: 4px; }
+.dl { display: inline-flex; align-items: center; min-height: 40px; padding: 4px 14px; border: 1.5px solid var(--link); border-radius: 999px; color: var(--link); font-weight: 700; font-size: var(--s-1); text-decoration: none; white-space: nowrap; }
+.dl-ico { width: 1.1em; height: 1.1em; margin-right: 6px; flex: none; }
+.dl:hover { background: var(--accent-soft); }
 .fmt { font-size: 0.72rem; font-weight: 700; letter-spacing: .05em; text-align: center; padding: 3px 0; border-radius: 4px; border: 1.5px solid currentColor; }
 .fmt-pdf { color: #b42318; } .fmt-docx { color: var(--link); }
 :root[data-contrast="high"] .fmt { color: var(--ink); }
@@ -253,6 +259,21 @@ td.num { text-align: right; white-space: nowrap; font-weight: 700; }
 .bip-badge { display: inline-block; margin-top: 16px; background: var(--logo-bg); padding: 6px; border-radius: var(--r); }
 .bip-badge img { display: block; width: 52px; height: auto; }
 
+
+/* Szybkie akcje */
+.quick-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.quick-actions .btn { gap: 8px; }
+.ico { width: 1.1em; height: 1.1em; flex: none; }
+/* Przycisk powrotu na górę */
+.to-top {
+  position: fixed; z-index: 35; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--brand); color: var(--brand-ink); border: 2px solid var(--brand-ink); box-shadow: 0 4px 14px rgba(16, 24, 40, .25); text-decoration: none;
+}
+.to-top svg { width: 20px; height: 20px; }
+@media (pointer: coarse) {
+  .news a, footer li a { display: inline-block; padding-block: 6px; }
+}
 /* Stopka */
 footer { background: var(--brand); color: var(--brand-ink); font-size: var(--s-1); }
 footer a { color: var(--brand-ink); }
@@ -274,8 +295,27 @@ footer p { max-width: none; }
 }
 @media (max-width: 720px) {
   .menu-btn { display: inline-block; }
-  nav.main ul { display: none; flex-direction: column; padding-block: 4px; }
-  nav.main.open ul { display: flex; }
+  .masthead { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; }
+  .masthead .wrap { padding-block: 10px; }
+  .inst-name small { display: none; }
+  nav.main { display: none; position: fixed; left: 0; right: 0; top: calc(var(--sticky-h, 72px) + env(safe-area-inset-top, 0px)); max-height: calc(100vh - var(--sticky-h, 72px) - env(safe-area-inset-top, 0px)); overflow-y: auto; box-shadow: 0 12px 24px rgba(16, 24, 40, .18); }
+  nav.main.open { display: block; }
+  nav.main ul { flex-direction: column; padding-block: 4px; }
+  .util ul { gap: 0 16px; }
+  .util a { min-height: 40px; }
+  .quick-actions .btn { flex: 1 1 auto; justify-content: center; }
+  .fees thead { display: none; }
+  .fees, .fees tbody, .fees tr, .fees td { display: block; }
+  .fees tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; padding: 14px 16px; border-top: 1px solid var(--line); }
+  .fees tbody tr:first-child { border-top: 0; }
+  .fees td { padding: 0; border: 0; }
+  .fees td:first-child { font-weight: 700; }
+  .fees td:nth-child(2) { grid-column: 1 / -1; grid-row: 2; color: var(--muted); font-size: var(--s-1); }
+  .fees td.num { grid-column: 2; grid-row: 1; font-size: var(--s1); }
+  .files li { grid-template-columns: 3.4rem minmax(0, 1fr) auto; row-gap: 4px; }
+  .files .ft { grid-column: 2 / -1; }
+  .files .sz { grid-column: 2; }
+  .files .dl { grid-column: 3; }
   nav.main li a, nav.main li:first-child a { padding: 12px 0; border-bottom: 1px solid var(--line); }
   nav.main li:last-child a { border-bottom: 0; }
   .inst-mark { width: 52px; height: 52px; }
@@ -286,8 +326,6 @@ footer p { max-width: none; }
   .quick, .groups { grid-template-columns: minmax(0, 1fr); }
   .facts div, .contact .facts div { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .news li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
-  .files li { grid-template-columns: 3.4rem minmax(0, 1fr); row-gap: 2px; }
-  .files .sz { grid-column: 2; }
   footer .wrap { grid-template-columns: minmax(0, 1fr); }
   .map-frame { height: 280px; }
 }
@@ -299,7 +337,7 @@ footer p { max-width: none; }
 
 <a class="skip" href="#tresc">Przejdź do treści</a>
 
-<div class="util">
+<div class="util" id="top">
   <div class="wrap">
     <ul>
       <li><a href="http://pm16.koszalin.ibip.pl/public/" target="_blank" rel="noopener">Biuletyn Informacji Publicznej</a></li>
@@ -352,6 +390,7 @@ footer p { max-width: none; }
         <h1>Przedszkole nr 16 w Koszalinie</h1>
         <p class="lede">Publiczne przedszkole dla dzieci w wieku 3–6 lat, działające od 8 września 1975 roku na Osiedlu Wańkowicza.</p>
         <p>Zapewniamy opiekę, wychowanie i edukację w siedmiu salach dydaktycznych, z dużym ogrodem i placem zabaw położonym wśród zieleni parku. Na tej stronie znajdą Państwo informacje o rekrutacji, opłatach, organizacji dnia oraz dokumenty przedszkola.</p>
+        <div class="quick-actions"><a class="btn" href="tel:+48943452616"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Zadzwoń: 94 345 26 16</a><a class="btn secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Przedszkole+nr+16+Kornela+Makuszy%C5%84skiego+9+Koszalin" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Wyznacz trasę</a><a class="btn secondary" href="mailto:p16@przedszkolakoszalin.pl"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Napisz e-mail</a></div>
       </div>
       <dl class="facts" aria-label="Najważniejsze informacje">
         <div><dt>Adres</dt><dd>ul. Kornela Makuszyńskiego 9, 75-442 Koszalin</dd></div>
@@ -663,7 +702,7 @@ footer p { max-width: none; }
         <h2 id="h-opl">Opłaty</h2>
       </div>
       <div class="table-scroll">
-        <table>
+        <table class="fees">
           <thead><tr><th scope="col">Pozycja</th><th scope="col">Podstawa</th><th scope="col" style="text-align:right">Stawka</th></tr></thead>
           <tbody>
             <tr><td>Każda rozpoczęta godzina ponad bezpłatny wymiar</td><td>Uchwała Nr V/42/2024 Rady Miejskiej w Koszalinie z 27.06.2024</td><td class="num">1,44 zł</td></tr>
@@ -692,87 +731,87 @@ footer p { max-width: none; }
         <details class="doc-group" id="dok-przedszkole" open>
           <summary><span>Dokumenty przedszkola</span><span class="n">3</span></summary>
           <ul class="files">
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/statut-przedszkola-2026.pdf" target="_blank" rel="noopener">Statut Przedszkola nr 16 (2026)</a><span class="sz">249 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/koncepcja-pracy-przedszkola-2023-2028.pdf" target="_blank" rel="noopener">Koncepcja Pracy Przedszkola na lata 2023–2028</a><span class="sz">634 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/podstawa-programowa-2026.pdf" target="_blank" rel="noopener">Podstawa programowa wychowania przedszkolnego (2026)</a><span class="sz">4,2 MB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/statut-przedszkola-2026.pdf" target="_blank" rel="noopener">Statut Przedszkola nr 16 (2026)</a><span class="sz">249 kB</span><a class="dl" href="pliki/statut-przedszkola-2026.pdf" download aria-label="Pobierz: Statut Przedszkola nr 16 (2026) (PDF, 249 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/koncepcja-pracy-przedszkola-2023-2028.pdf" target="_blank" rel="noopener">Koncepcja Pracy Przedszkola na lata 2023–2028</a><span class="sz">634 kB</span><a class="dl" href="pliki/koncepcja-pracy-przedszkola-2023-2028.pdf" download aria-label="Pobierz: Koncepcja Pracy Przedszkola na lata 2023–2028 (PDF, 634 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/podstawa-programowa-2026.pdf" target="_blank" rel="noopener">Podstawa programowa wychowania przedszkolnego (2026)</a><span class="sz">4,2 MB</span><a class="dl" href="pliki/podstawa-programowa-2026.pdf" download aria-label="Pobierz: Podstawa programowa wychowania przedszkolnego (2026) (PDF, 4,2 MB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
           </ul>
         </details>
         <details class="doc-group" id="dok-procedury">
           <summary><span>Procedury i regulaminy</span><span class="n">7</span></summary>
           <ul class="files">
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/procedura-przyprowadzania-i-odbierania-dziecka-2025-2026.pdf" target="_blank" rel="noopener">Procedura przyprowadzania i odbierania dziecka 2025/2026</a><span class="sz">288 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/regulamin-spacerow-i-wycieczek-2025-2026.pdf" target="_blank" rel="noopener">Regulamin spacerów i wycieczek 2025/2026</a><span class="sz">419 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/procedura-kontaktow-z-rodzicami-2025-2026.pdf" target="_blank" rel="noopener">Procedura kontaktów z rodzicami 2025/2026</a><span class="sz">422 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/procedura-pomocy-psychologiczno-pedagogicznej-2025-2026.pdf" target="_blank" rel="noopener">Procedura udzielania pomocy psychologiczno-pedagogicznej 2025/2026</a><span class="sz">458 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/standardy-ochrony-maloletnich.pdf" target="_blank" rel="noopener">Standardy Ochrony Małoletnich w Przedszkolu nr 16</a><span class="sz">799 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/zarzadzenie-standardy-ochrony-maloletnich.pdf" target="_blank" rel="noopener">Zarządzenie dyrektora w sprawie Standardów Ochrony Małoletnich</a><span class="sz">82 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/regulamin-rady-rodzicow.pdf" target="_blank" rel="noopener">Regulamin Rady Rodziców</a><span class="sz">224 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/procedura-przyprowadzania-i-odbierania-dziecka-2025-2026.pdf" target="_blank" rel="noopener">Procedura przyprowadzania i odbierania dziecka 2025/2026</a><span class="sz">288 kB</span><a class="dl" href="pliki/procedura-przyprowadzania-i-odbierania-dziecka-2025-2026.pdf" download aria-label="Pobierz: Procedura przyprowadzania i odbierania dziecka 2025/2026 (PDF, 288 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/regulamin-spacerow-i-wycieczek-2025-2026.pdf" target="_blank" rel="noopener">Regulamin spacerów i wycieczek 2025/2026</a><span class="sz">419 kB</span><a class="dl" href="pliki/regulamin-spacerow-i-wycieczek-2025-2026.pdf" download aria-label="Pobierz: Regulamin spacerów i wycieczek 2025/2026 (PDF, 419 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/procedura-kontaktow-z-rodzicami-2025-2026.pdf" target="_blank" rel="noopener">Procedura kontaktów z rodzicami 2025/2026</a><span class="sz">422 kB</span><a class="dl" href="pliki/procedura-kontaktow-z-rodzicami-2025-2026.pdf" download aria-label="Pobierz: Procedura kontaktów z rodzicami 2025/2026 (PDF, 422 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/procedura-pomocy-psychologiczno-pedagogicznej-2025-2026.pdf" target="_blank" rel="noopener">Procedura udzielania pomocy psychologiczno-pedagogicznej 2025/2026</a><span class="sz">458 kB</span><a class="dl" href="pliki/procedura-pomocy-psychologiczno-pedagogicznej-2025-2026.pdf" download aria-label="Pobierz: Procedura udzielania pomocy psychologiczno-pedagogicznej 2025/2026 (PDF, 458 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/standardy-ochrony-maloletnich.pdf" target="_blank" rel="noopener">Standardy Ochrony Małoletnich w Przedszkolu nr 16</a><span class="sz">799 kB</span><a class="dl" href="pliki/standardy-ochrony-maloletnich.pdf" download aria-label="Pobierz: Standardy Ochrony Małoletnich w Przedszkolu nr 16 (PDF, 799 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/zarzadzenie-standardy-ochrony-maloletnich.pdf" target="_blank" rel="noopener">Zarządzenie dyrektora w sprawie Standardów Ochrony Małoletnich</a><span class="sz">82 kB</span><a class="dl" href="pliki/zarzadzenie-standardy-ochrony-maloletnich.pdf" download aria-label="Pobierz: Zarządzenie dyrektora w sprawie Standardów Ochrony Małoletnich (PDF, 82 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/regulamin-rady-rodzicow.pdf" target="_blank" rel="noopener">Regulamin Rady Rodziców</a><span class="sz">224 kB</span><a class="dl" href="pliki/regulamin-rady-rodzicow.pdf" download aria-label="Pobierz: Regulamin Rady Rodziców (PDF, 224 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
           </ul>
         </details>
         <details class="doc-group" id="dok-druki" open>
           <summary><span>Druki dla rodziców</span><span class="n">8</span></summary>
           <ul class="files">
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/upowaznienie-do-odbioru-dziecka-2026-2027.pdf" target="_blank" rel="noopener">Upoważnienie do odbioru dziecka 2026/2027</a><span class="sz">58 kB</span></li>
-            <li><span class="fmt fmt-docx">DOCX</span><a href="pliki/oswiadczenia-i-zgody-rodzicow-2026-2027.docx" target="_blank" rel="noopener">Oświadczenia i zgody rodziców 2026/2027</a><span class="sz">31 kB</span></li>
-            <li><span class="fmt fmt-docx">DOCX</span><a href="pliki/zgoda-religia-2026-2027.docx" target="_blank" rel="noopener">Zgoda na uczestnictwo w zajęciach religii 2026/2027</a><span class="sz">16 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/oswiadczenie-zamieszkanie-dziecka-2025.pdf" target="_blank" rel="noopener">Oświadczenie o miejscu zamieszkania dziecka (2025)</a><span class="sz">612 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/wniosek-o-wydanie-informacji-o-dziecku.pdf" target="_blank" rel="noopener">Wniosek o wydanie informacji o dziecku</a><span class="sz">264 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/wniosek-zwolnienie-z-oplat.pdf" target="_blank" rel="noopener">Wniosek o zwolnienie z opłat</a><span class="sz">66 kB</span></li>
-            <li><span class="fmt fmt-docx">DOCX</span><a href="pliki/wniosek-zwolnienie-z-oplat.docx" target="_blank" rel="noopener">Wniosek o zwolnienie z opłat (wersja do edycji)</a><span class="sz">22 kB</span></li>
-            <li><span class="fmt fmt-docx">DOCX</span><a href="pliki/oswiadczenie-oplaty.docx" target="_blank" rel="noopener">Oświadczenie dotyczące opłat</a><span class="sz">19 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/upowaznienie-do-odbioru-dziecka-2026-2027.pdf" target="_blank" rel="noopener">Upoważnienie do odbioru dziecka 2026/2027</a><span class="sz">58 kB</span><a class="dl" href="pliki/upowaznienie-do-odbioru-dziecka-2026-2027.pdf" download aria-label="Pobierz: Upoważnienie do odbioru dziecka 2026/2027 (PDF, 58 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-docx">DOCX</span><a class="ft" href="pliki/oswiadczenia-i-zgody-rodzicow-2026-2027.docx" target="_blank" rel="noopener">Oświadczenia i zgody rodziców 2026/2027</a><span class="sz">31 kB</span><a class="dl" href="pliki/oswiadczenia-i-zgody-rodzicow-2026-2027.docx" download aria-label="Pobierz: Oświadczenia i zgody rodziców 2026/2027 (DOCX, 31 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-docx">DOCX</span><a class="ft" href="pliki/zgoda-religia-2026-2027.docx" target="_blank" rel="noopener">Zgoda na uczestnictwo w zajęciach religii 2026/2027</a><span class="sz">16 kB</span><a class="dl" href="pliki/zgoda-religia-2026-2027.docx" download aria-label="Pobierz: Zgoda na uczestnictwo w zajęciach religii 2026/2027 (DOCX, 16 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/oswiadczenie-zamieszkanie-dziecka-2025.pdf" target="_blank" rel="noopener">Oświadczenie o miejscu zamieszkania dziecka (2025)</a><span class="sz">612 kB</span><a class="dl" href="pliki/oswiadczenie-zamieszkanie-dziecka-2025.pdf" download aria-label="Pobierz: Oświadczenie o miejscu zamieszkania dziecka (2025) (PDF, 612 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/wniosek-o-wydanie-informacji-o-dziecku.pdf" target="_blank" rel="noopener">Wniosek o wydanie informacji o dziecku</a><span class="sz">264 kB</span><a class="dl" href="pliki/wniosek-o-wydanie-informacji-o-dziecku.pdf" download aria-label="Pobierz: Wniosek o wydanie informacji o dziecku (PDF, 264 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/wniosek-zwolnienie-z-oplat.pdf" target="_blank" rel="noopener">Wniosek o zwolnienie z opłat</a><span class="sz">66 kB</span><a class="dl" href="pliki/wniosek-zwolnienie-z-oplat.pdf" download aria-label="Pobierz: Wniosek o zwolnienie z opłat (PDF, 66 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-docx">DOCX</span><a class="ft" href="pliki/wniosek-zwolnienie-z-oplat.docx" target="_blank" rel="noopener">Wniosek o zwolnienie z opłat (wersja do edycji)</a><span class="sz">22 kB</span><a class="dl" href="pliki/wniosek-zwolnienie-z-oplat.docx" download aria-label="Pobierz: Wniosek o zwolnienie z opłat (wersja do edycji) (DOCX, 22 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-docx">DOCX</span><a class="ft" href="pliki/oswiadczenie-oplaty.docx" target="_blank" rel="noopener">Oświadczenie dotyczące opłat</a><span class="sz">19 kB</span><a class="dl" href="pliki/oswiadczenie-oplaty.docx" download aria-label="Pobierz: Oświadczenie dotyczące opłat (DOCX, 19 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
           </ul>
         </details>
         <details class="doc-group" id="dok-oplaty">
           <summary><span>Opłaty i organizacja</span><span class="n">6</span></summary>
           <ul class="files">
-            <li><span class="fmt fmt-docx">DOCX</span><a href="pliki/informacja-o-oplatach.docx" target="_blank" rel="noopener">Informacja dla rodziców o opłatach za pobyt i wyżywienie</a><span class="sz">14 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/uchwala-oplata-przedszkolna-2024.pdf" target="_blank" rel="noopener">Uchwała Rady Miejskiej w sprawie opłaty przedszkolnej (2024)</a><span class="sz">1,4 MB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/zarzadzenie-stawka-zywieniowa.pdf" target="_blank" rel="noopener">Zarządzenie w sprawie stawki żywieniowej</a><span class="sz">163 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/zarzadzenie-przerwa-wakacyjna.pdf" target="_blank" rel="noopener">Zarządzenie w sprawie przerwy wakacyjnej</a><span class="sz">251 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/zasady-iprzedszkole.pdf" target="_blank" rel="noopener">Zasady korzystania z systemu iPrzedszkole</a><span class="sz">154 kB</span></li>
-            <li><span class="fmt fmt-docx">DOCX</span><a href="pliki/instrukcja-logowania-iprzedszkole.docx" target="_blank" rel="noopener">Instrukcja logowania do systemu iPrzedszkole</a><span class="sz">16 kB</span></li>
+            <li><span class="fmt fmt-docx">DOCX</span><a class="ft" href="pliki/informacja-o-oplatach.docx" target="_blank" rel="noopener">Informacja dla rodziców o opłatach za pobyt i wyżywienie</a><span class="sz">14 kB</span><a class="dl" href="pliki/informacja-o-oplatach.docx" download aria-label="Pobierz: Informacja dla rodziców o opłatach za pobyt i wyżywienie (DOCX, 14 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/uchwala-oplata-przedszkolna-2024.pdf" target="_blank" rel="noopener">Uchwała Rady Miejskiej w sprawie opłaty przedszkolnej (2024)</a><span class="sz">1,4 MB</span><a class="dl" href="pliki/uchwala-oplata-przedszkolna-2024.pdf" download aria-label="Pobierz: Uchwała Rady Miejskiej w sprawie opłaty przedszkolnej (2024) (PDF, 1,4 MB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/zarzadzenie-stawka-zywieniowa.pdf" target="_blank" rel="noopener">Zarządzenie w sprawie stawki żywieniowej</a><span class="sz">163 kB</span><a class="dl" href="pliki/zarzadzenie-stawka-zywieniowa.pdf" download aria-label="Pobierz: Zarządzenie w sprawie stawki żywieniowej (PDF, 163 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/zarzadzenie-przerwa-wakacyjna.pdf" target="_blank" rel="noopener">Zarządzenie w sprawie przerwy wakacyjnej</a><span class="sz">251 kB</span><a class="dl" href="pliki/zarzadzenie-przerwa-wakacyjna.pdf" download aria-label="Pobierz: Zarządzenie w sprawie przerwy wakacyjnej (PDF, 251 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/zasady-iprzedszkole.pdf" target="_blank" rel="noopener">Zasady korzystania z systemu iPrzedszkole</a><span class="sz">154 kB</span><a class="dl" href="pliki/zasady-iprzedszkole.pdf" download aria-label="Pobierz: Zasady korzystania z systemu iPrzedszkole (PDF, 154 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-docx">DOCX</span><a class="ft" href="pliki/instrukcja-logowania-iprzedszkole.docx" target="_blank" rel="noopener">Instrukcja logowania do systemu iPrzedszkole</a><span class="sz">16 kB</span><a class="dl" href="pliki/instrukcja-logowania-iprzedszkole.docx" download aria-label="Pobierz: Instrukcja logowania do systemu iPrzedszkole (DOCX, 16 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
           </ul>
         </details>
         <details class="doc-group" id="dok-rekrutacja">
           <summary><span>Rekrutacja</span><span class="n">6</span></summary>
           <ul class="files">
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/harmonogram-rekrutacji-2026.pdf" target="_blank" rel="noopener">Zarządzenie w sprawie harmonogramu rekrutacji 2026</a><span class="sz">249 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/kryteria-rekrutacji.pdf" target="_blank" rel="noopener">Kryteria rekrutacji do przedszkoli</a><span class="sz">418 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/skrot-informacji-o-naborze.pdf" target="_blank" rel="noopener">Skrót informacji o naborze</a><span class="sz">278 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rekrutacja-instrukcja.pdf" target="_blank" rel="noopener">Rekrutacja do przedszkoli – instrukcja</a><span class="sz">142 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/instrukcja-rekrutacyjna-przedszkola.pdf" target="_blank" rel="noopener">Instrukcja rekrutacyjna dla przedszkoli</a><span class="sz">290 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/podrecznik-dla-kandydata.pdf" target="_blank" rel="noopener">Podręcznik dla kandydata (system naboru)</a><span class="sz">2,8 MB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/harmonogram-rekrutacji-2026.pdf" target="_blank" rel="noopener">Zarządzenie w sprawie harmonogramu rekrutacji 2026</a><span class="sz">249 kB</span><a class="dl" href="pliki/harmonogram-rekrutacji-2026.pdf" download aria-label="Pobierz: Zarządzenie w sprawie harmonogramu rekrutacji 2026 (PDF, 249 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/kryteria-rekrutacji.pdf" target="_blank" rel="noopener">Kryteria rekrutacji do przedszkoli</a><span class="sz">418 kB</span><a class="dl" href="pliki/kryteria-rekrutacji.pdf" download aria-label="Pobierz: Kryteria rekrutacji do przedszkoli (PDF, 418 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/skrot-informacji-o-naborze.pdf" target="_blank" rel="noopener">Skrót informacji o naborze</a><span class="sz">278 kB</span><a class="dl" href="pliki/skrot-informacji-o-naborze.pdf" download aria-label="Pobierz: Skrót informacji o naborze (PDF, 278 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/rekrutacja-instrukcja.pdf" target="_blank" rel="noopener">Rekrutacja do przedszkoli – instrukcja</a><span class="sz">142 kB</span><a class="dl" href="pliki/rekrutacja-instrukcja.pdf" download aria-label="Pobierz: Rekrutacja do przedszkoli – instrukcja (PDF, 142 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/instrukcja-rekrutacyjna-przedszkola.pdf" target="_blank" rel="noopener">Instrukcja rekrutacyjna dla przedszkoli</a><span class="sz">290 kB</span><a class="dl" href="pliki/instrukcja-rekrutacyjna-przedszkola.pdf" download aria-label="Pobierz: Instrukcja rekrutacyjna dla przedszkoli (PDF, 290 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/podrecznik-dla-kandydata.pdf" target="_blank" rel="noopener">Podręcznik dla kandydata (system naboru)</a><span class="sz">2,8 MB</span><a class="dl" href="pliki/podrecznik-dla-kandydata.pdf" download aria-label="Pobierz: Podręcznik dla kandydata (system naboru) (PDF, 2,8 MB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
           </ul>
         </details>
         <details class="doc-group" id="dok-rodo">
           <summary><span>Ochrona danych osobowych (RODO)</span><span class="n">9</span></summary>
           <ul class="files">
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rodo-informacja-o-przetwarzaniu-danych.pdf" target="_blank" rel="noopener">Informacja o przetwarzaniu danych osobowych w Przedszkolu nr 16</a><span class="sz">250 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rodo-klauzula-dziecko-i-rodzice.pdf" target="_blank" rel="noopener">Klauzula informacyjna – dziecko i rodzice</a><span class="sz">68 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rodo-klauzula-osoby-odbierajace.pdf" target="_blank" rel="noopener">Klauzula informacyjna – osoby odbierające dziecko</a><span class="sz">66 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rodo-klauzula-przedszkole-zastepcze.pdf" target="_blank" rel="noopener">Klauzula informacyjna – przedszkole zastępcze</a><span class="sz">66 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rodo-klauzula-kontrahenci.pdf" target="_blank" rel="noopener">Klauzula informacyjna – kontrahenci</a><span class="sz">64 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rodo-klauzula-pracownik.pdf" target="_blank" rel="noopener">Klauzula informacyjna – pracownik</a><span class="sz">69 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rodo-klauzula-rekrutacja-pedagogiczny.pdf" target="_blank" rel="noopener">Klauzula informacyjna – rekrutacja, pracownik pedagogiczny</a><span class="sz">88 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rodo-klauzula-rekrutacja-niepedagogiczny.pdf" target="_blank" rel="noopener">Klauzula informacyjna – rekrutacja, pracownik niepedagogiczny</a><span class="sz">67 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/rodo-klauzula-rejestr.pdf" target="_blank" rel="noopener">Klauzula informacyjna – rejestr sprawców przestępstw na tle seksualnym</a><span class="sz">435 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/rodo-informacja-o-przetwarzaniu-danych.pdf" target="_blank" rel="noopener">Informacja o przetwarzaniu danych osobowych w Przedszkolu nr 16</a><span class="sz">250 kB</span><a class="dl" href="pliki/rodo-informacja-o-przetwarzaniu-danych.pdf" download aria-label="Pobierz: Informacja o przetwarzaniu danych osobowych w Przedszkolu nr 16 (PDF, 250 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/rodo-klauzula-dziecko-i-rodzice.pdf" target="_blank" rel="noopener">Klauzula informacyjna – dziecko i rodzice</a><span class="sz">68 kB</span><a class="dl" href="pliki/rodo-klauzula-dziecko-i-rodzice.pdf" download aria-label="Pobierz: Klauzula informacyjna – dziecko i rodzice (PDF, 68 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/rodo-klauzula-osoby-odbierajace.pdf" target="_blank" rel="noopener">Klauzula informacyjna – osoby odbierające dziecko</a><span class="sz">66 kB</span><a class="dl" href="pliki/rodo-klauzula-osoby-odbierajace.pdf" download aria-label="Pobierz: Klauzula informacyjna – osoby odbierające dziecko (PDF, 66 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/rodo-klauzula-przedszkole-zastepcze.pdf" target="_blank" rel="noopener">Klauzula informacyjna – przedszkole zastępcze</a><span class="sz">66 kB</span><a class="dl" href="pliki/rodo-klauzula-przedszkole-zastepcze.pdf" download aria-label="Pobierz: Klauzula informacyjna – przedszkole zastępcze (PDF, 66 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/rodo-klauzula-kontrahenci.pdf" target="_blank" rel="noopener">Klauzula informacyjna – kontrahenci</a><span class="sz">64 kB</span><a class="dl" href="pliki/rodo-klauzula-kontrahenci.pdf" download aria-label="Pobierz: Klauzula informacyjna – kontrahenci (PDF, 64 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/rodo-klauzula-pracownik.pdf" target="_blank" rel="noopener">Klauzula informacyjna – pracownik</a><span class="sz">69 kB</span><a class="dl" href="pliki/rodo-klauzula-pracownik.pdf" download aria-label="Pobierz: Klauzula informacyjna – pracownik (PDF, 69 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/rodo-klauzula-rekrutacja-pedagogiczny.pdf" target="_blank" rel="noopener">Klauzula informacyjna – rekrutacja, pracownik pedagogiczny</a><span class="sz">88 kB</span><a class="dl" href="pliki/rodo-klauzula-rekrutacja-pedagogiczny.pdf" download aria-label="Pobierz: Klauzula informacyjna – rekrutacja, pracownik pedagogiczny (PDF, 88 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/rodo-klauzula-rekrutacja-niepedagogiczny.pdf" target="_blank" rel="noopener">Klauzula informacyjna – rekrutacja, pracownik niepedagogiczny</a><span class="sz">67 kB</span><a class="dl" href="pliki/rodo-klauzula-rekrutacja-niepedagogiczny.pdf" download aria-label="Pobierz: Klauzula informacyjna – rekrutacja, pracownik niepedagogiczny (PDF, 67 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/rodo-klauzula-rejestr.pdf" target="_blank" rel="noopener">Klauzula informacyjna – rejestr sprawców przestępstw na tle seksualnym</a><span class="sz">435 kB</span><a class="dl" href="pliki/rodo-klauzula-rejestr.pdf" download aria-label="Pobierz: Klauzula informacyjna – rejestr sprawców przestępstw na tle seksualnym (PDF, 435 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
           </ul>
         </details>
         <details class="doc-group" id="dok-grupy">
           <summary><span>Zamierzenia wychowawczo-dydaktyczne grup (wrzesień)</span><span class="n">6</span></summary>
           <ul class="files">
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/grupa-1-biedronki-wrzesien.pdf" target="_blank" rel="noopener">Grupa I – Biedronki</a><span class="sz">193 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/grupa-2-motylki-wrzesien.pdf" target="_blank" rel="noopener">Grupa II – Motylki</a><span class="sz">380 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/grupa-3-pszczolki-wrzesien.pdf" target="_blank" rel="noopener">Grupa III – Pszczółki</a><span class="sz">212 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/grupa-4-mrowki-wrzesien.pdf" target="_blank" rel="noopener">Grupa IV – Mrówki</a><span class="sz">443 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/grupa-5-zabki-wrzesien.pdf" target="_blank" rel="noopener">Grupa V – Żabki</a><span class="sz">227 kB</span></li>
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/grupa-6-wazki-wrzesien.pdf" target="_blank" rel="noopener">Grupa VI – Ważki</a><span class="sz">242 kB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/grupa-1-biedronki-wrzesien.pdf" target="_blank" rel="noopener">Grupa I – Biedronki</a><span class="sz">193 kB</span><a class="dl" href="pliki/grupa-1-biedronki-wrzesien.pdf" download aria-label="Pobierz: Grupa I – Biedronki (PDF, 193 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/grupa-2-motylki-wrzesien.pdf" target="_blank" rel="noopener">Grupa II – Motylki</a><span class="sz">380 kB</span><a class="dl" href="pliki/grupa-2-motylki-wrzesien.pdf" download aria-label="Pobierz: Grupa II – Motylki (PDF, 380 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/grupa-3-pszczolki-wrzesien.pdf" target="_blank" rel="noopener">Grupa III – Pszczółki</a><span class="sz">212 kB</span><a class="dl" href="pliki/grupa-3-pszczolki-wrzesien.pdf" download aria-label="Pobierz: Grupa III – Pszczółki (PDF, 212 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/grupa-4-mrowki-wrzesien.pdf" target="_blank" rel="noopener">Grupa IV – Mrówki</a><span class="sz">443 kB</span><a class="dl" href="pliki/grupa-4-mrowki-wrzesien.pdf" download aria-label="Pobierz: Grupa IV – Mrówki (PDF, 443 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/grupa-5-zabki-wrzesien.pdf" target="_blank" rel="noopener">Grupa V – Żabki</a><span class="sz">227 kB</span><a class="dl" href="pliki/grupa-5-zabki-wrzesien.pdf" download aria-label="Pobierz: Grupa V – Żabki (PDF, 227 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/grupa-6-wazki-wrzesien.pdf" target="_blank" rel="noopener">Grupa VI – Ważki</a><span class="sz">242 kB</span><a class="dl" href="pliki/grupa-6-wazki-wrzesien.pdf" download aria-label="Pobierz: Grupa VI – Ważki (PDF, 242 kB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
           </ul>
         </details>
         <details class="doc-group" id="dok-archiwum">
           <summary><span>Dokumenty archiwalne</span><span class="n">1</span></summary>
           <ul class="files">
-            <li><span class="fmt fmt-pdf">PDF</span><a href="pliki/archiwum-procedura-covid-19-2021.pdf" target="_blank" rel="noopener">Procedura bezpieczeństwa w czasie pandemii COVID-19 (2021)</a><span class="sz">2,7 MB</span></li>
+            <li><span class="fmt fmt-pdf">PDF</span><a class="ft" href="pliki/archiwum-procedura-covid-19-2021.pdf" target="_blank" rel="noopener">Procedura bezpieczeństwa w czasie pandemii COVID-19 (2021)</a><span class="sz">2,7 MB</span><a class="dl" href="pliki/archiwum-procedura-covid-19-2021.pdf" download aria-label="Pobierz: Procedura bezpieczeństwa w czasie pandemii COVID-19 (2021) (PDF, 2,7 MB)"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Pobierz</a></li>
           </ul>
         </details>
       </div>
@@ -785,6 +824,7 @@ footer p { max-width: none; }
       <div class="sec-head">
         <p class="kicker">Kontakt</p>
         <h2 id="h-kontakt">Dane kontaktowe</h2>
+        <div class="quick-actions"><a class="btn" href="tel:+48943452616"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Zadzwoń: 94 345 26 16</a><a class="btn secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Przedszkole+nr+16+Kornela+Makuszy%C5%84skiego+9+Koszalin" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Wyznacz trasę</a><a class="btn secondary" href="mailto:p16@przedszkolakoszalin.pl"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Napisz e-mail</a></div>
       </div>
       <div class="contact">
         <dl class="facts">
@@ -861,6 +901,8 @@ footer p { max-width: none; }
   </div>
 </footer>
 
+<a class="to-top" href="#top" id="to-top" hidden aria-label="Wróć na górę strony"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15 6-6 6 6"/></svg></a>
+
 <script>
 (function () {
   var root = document.documentElement;
@@ -894,9 +936,34 @@ footer p { max-width: none; }
     var open = menu.classList.toggle('open');
     menuBtn.setAttribute('aria-expanded', String(open));
   });
-  menu.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', function () { menu.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); });
-  });
+  function closeMenu() { menu.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); }
+  menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menu.classList.contains('open')) { closeMenu(); menuBtn.focus(); } });
+  document.addEventListener('click', function (e) { if (menu.classList.contains('open') && !menu.contains(e.target) && !menuBtn.contains(e.target)) closeMenu(); });
+
+  // Przyklejony nagłówek (telefon) lub menu (komputer): wysokość dla przewijania do sekcji
+  var masthead = document.querySelector('.masthead');
+  var mobileMq = window.matchMedia('(max-width: 720px)');
+  function layout() {
+    var h = mobileMq.matches ? masthead.offsetHeight : menu.offsetHeight;
+    root.style.setProperty('--sticky-h', h + 'px');
+    if (!mobileMq.matches) closeMenu();
+  }
+  window.addEventListener('resize', layout);
+  window.addEventListener('load', layout);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+  fsButtons.forEach(function (b) { b.addEventListener('click', layout); });
+  layout();
+
+  // Cień pod menu i przycisk powrotu na górę
+  var toTop = document.getElementById('to-top');
+  function onScroll() {
+    toTop.hidden = window.scrollY < window.innerHeight;
+    menu.classList.toggle('stuck', !mobileMq.matches && masthead.getBoundingClientRect().bottom <= 0);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
 
   // Dokumenty: wyszukiwarka i otwieranie kategorii z linków
   var filter = document.getElementById('doc-filter');
