@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deklaracja dostępności – Przedszkole nr 16 w Koszalinie</title>
+<meta name="description" content="Deklaracja dostępności strony internetowej Przedszkola nr 16 w Koszalinie.">
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;700&family=Lexend:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="assets/prefs.js"></script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#tresc">Przejdź do treści</a>
+<div class="util" id="top">
+  <div class="wrap">
+    <nav class="util-links" aria-label="Informacje i dostępność">
+    <ul>
+      <li><a href="http://pm16.koszalin.ibip.pl/public/" target="_blank" rel="noopener">Biuletyn Informacji Publicznej</a></li>
+      <li><a href="deklaracja-dostepnosci.html" aria-current="page">Deklaracja dostępności</a></li>
+      <li><a href="tekst-latwy.html">Tekst łatwy do czytania</a></li>
+      <li><a href="jezyk-migowy.html">Język migowy</a></li>
+    </ul>
+    </nav>
+    <button type="button" class="a11y-toggle" id="a11y-toggle" aria-expanded="false" aria-controls="a11y-panel"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="2"/><path d="M5 8.5c2.3.7 4.6 1 7 1s4.7-.3 7-1M12 9.5v4.5m0 0-3 7m3-7 3 7"/></svg>Ułatwienia dostępu</button>
+  </div>
+  <div class="a11y-panel" id="a11y-panel" hidden>
+    <div class="wrap">
+      <h2 class="sr-only">Ułatwienia dostępu</h2>
+      <div class="a11y-opt" role="group" aria-labelledby="a11y-fs-label">
+        <span id="a11y-fs-label">Wielkość tekstu</span>
+        <div class="a11y-btns">
+          <button type="button" data-fs="0" aria-pressed="true">A<span class="sr-only"> – normalny tekst</span></button>
+          <button type="button" data-fs="1" class="fs1" aria-pressed="false">A+<span class="sr-only"> – większy tekst</span></button>
+          <button type="button" data-fs="2" class="fs2" aria-pressed="false">A++<span class="sr-only"> – największy tekst</span></button>
+        </div>
+      </div>
+      <div class="a11y-opt">
+        <span id="a11y-more-label">Wygląd i czytanie</span>
+        <div class="a11y-btns" role="group" aria-labelledby="a11y-more-label">
+          <button type="button" data-pref="contrast" aria-pressed="false">Wysoki kontrast</button>
+          <button type="button" data-pref="spacing" aria-pressed="false">Większe odstępy</button>
+          <button type="button" data-pref="links" aria-pressed="false">Podkreśl linki</button>
+          <button type="button" data-pref="font" aria-pressed="false">Czytelna czcionka</button>
+        </div>
+      </div>
+      <div class="a11y-opt a11y-end">
+        <button type="button" class="a11y-reset" id="a11y-reset">Przywróć domyślne</button>
+        <button type="button" class="a11y-close" id="a11y-close">Zamknij</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="inst" href="index.html">
+      <svg class="inst-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 32A26 26 0 0 1 58 32" stroke="#e0533d"/><path d="M12 32A20 20 0 0 1 52 32" stroke="#f2a900"/><path d="M18 32A14 14 0 0 1 46 32" stroke="#2c9a5a"/><path d="M24 32A8 8 0 0 1 40 32" stroke="#5aa9ea"/><g stroke="currentColor"><path d="M17.5 44.5 23 40v19"/><circle cx="40.5" cy="52" r="6.5"/><path d="M34 52v-4.5c0-4.5 3-7.5 7.5-7.5"/></g></g></svg>
+      <span class="inst-name">
+        <strong>Przedszkole nr 16 w Koszalinie</strong>
+        <small>Placówka publiczna prowadzona przez Gminę Miasto Koszalin</small>
+      </span>
+    </a>
+    <div class="mast-actions">
+      <a class="search-btn search-btn-mast" href="index.html#szukaj"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><span>Szukaj</span></a>
+      <button class="menu-btn" type="button" id="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
+    </div>
+  </div>
+</header>
+
+<nav class="main" id="menu" aria-label="Menu główne">
+  <div class="wrap">
+    <ul>
+      <li><a href="index.html#aktualnosci">Aktualności</a></li>
+      <li><a href="index.html#o-przedszkolu">O przedszkolu</a></li>
+      <li><a href="index.html#organizacja">Organizacja dnia</a></li>
+      <li><a href="index.html#oferta">Oferta i grupy</a></li>
+      <li><a href="index.html#rekrutacja">Rekrutacja</a></li>
+      <li><a href="index.html#oplaty">Opłaty</a></li>
+      <li><a href="index.html#dokumenty">Dokumenty</a></li>
+      <li><a href="index.html#kontakt">Kontakt</a></li>
+      <li class="nav-search"><a class="search-btn search-btn-nav" href="index.html#szukaj"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>Szukaj</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="tresc" tabindex="-1" class="page">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Okruszki"><ol><li><a href="index.html">Strona główna</a></li><li aria-current="page">Deklaracja dostępności</li></ol></nav>
+    <article class="prose" id="a11y-deklaracja">
+      <h1 id="a11y-tytul">Deklaracja dostępności</h1>
+      <p class="draft-note" role="note"><strong>Projekt do zatwierdzenia przez dyrektora przedszkola.</strong> Pola oznaczone jako „do uzupełnienia” trzeba wypełnić przed publikacją strony, a tę ramkę usunąć.</p>
+
+      <p id="a11y-wstep"><span id="a11y-podmiot">Przedszkole nr 16 w Koszalinie</span> zobowiązuje się zapewnić dostępność swojej strony internetowej zgodnie z ustawą z dnia 4 kwietnia 2019 r. o dostępności cyfrowej stron internetowych i aplikacji mobilnych podmiotów publicznych. Deklaracja dostępności dotyczy strony internetowej <a id="a11y-url" href="index.html">Przedszkole nr 16 w Koszalinie</a>.</p>
+
+      <ul class="dates">
+        <li>Data publikacji strony internetowej: <span id="a11y-data-publikacja"><mark class="todo">[do uzupełnienia: RRRR-MM-DD, dzień uruchomienia nowej strony]</mark></span></li>
+        <li>Data ostatniej istotnej aktualizacji: <span id="a11y-data-aktualizacja"><mark class="todo">[do uzupełnienia: RRRR-MM-DD]</mark></span></li>
+      </ul>
+
+      <section id="a11y-status" aria-labelledby="h-status">
+        <h2 id="h-status">Stan dostępności cyfrowej</h2>
+        <p>Strona internetowa jest <strong>częściowo zgodna</strong> z ustawą o dostępności cyfrowej stron internetowych i aplikacji mobilnych podmiotów publicznych z powodu niezgodności lub wyłączeń wymienionych poniżej.</p>
+        <h3>Niezgodności</h3>
+        <ul>
+          <li>Dwa dokumenty PDF są skanami bez warstwy tekstowej i nie są odczytywane przez czytniki ekranu: „Upoważnienie do odbioru dziecka 2026/2027” oraz „Zarządzenie dyrektora w sprawie Standardów Ochrony Małoletnich”. Na prośbę udostępnimy ich treść w innej formie.</li>
+          <li>Trzy dokumenty PDF mają warstwę tekstową, ale nie mają oznaczonej struktury (nagłówków, list): „Podstawa programowa wychowania przedszkolnego (2026)”, „Informacja o przetwarzaniu danych osobowych w Przedszkolu nr 16” oraz „Zarządzenie w sprawie stawki żywieniowej”.</li>
+          <li>Dokumenty w formacie DOCX (druki do wypełnienia) nie zostały sprawdzone pod kątem dostępności.</li>
+          <li>Nagranie z informacją o przedszkolu w polskim języku migowym jest w przygotowaniu.</li>
+        </ul>
+        <h3>Wyłączenia</h3>
+        <ul>
+          <li>Mapa dojazdu – mapy są wyłączone z obowiązku zapewnienia dostępności. Adres przedszkola jest podany tekstem obok mapy.</li>
+          <li>Aktualności z archiwum prowadzą do komunikatów opublikowanych na Portalu Edukacyjnym Miasta Koszalina, za których dostępność przedszkole nie odpowiada.</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="h-przygotowanie">
+        <h2 id="h-przygotowanie">Przygotowanie deklaracji dostępności</h2>
+        <p>Deklarację sporządzono dnia <span id="a11y-data-sporzadzenie">2026-11-20</span>. Deklarację sporządzono na podstawie samooceny przeprowadzonej przez podmiot publiczny, z wykorzystaniem testów automatycznych (axe-core, kryteria WCAG 2.1 i 2.2 na poziomie AA) oraz testów ręcznych obsługi klawiaturą, powiększania tekstu i zmiany odstępów.</p>
+        <p>Deklarację ostatnio poddano przeglądowi i aktualizacji dnia <mark class="todo">[do uzupełnienia: RRRR-MM-DD]</mark>.</p>
+      </section>
+
+      <section aria-labelledby="h-ulatwienia">
+        <h2 id="h-ulatwienia">Ułatwienia na stronie</h2>
+        <ul>
+          <li>Przycisk „Ułatwienia dostępu” na górze strony: powiększenie tekstu (A, A+, A++), wysoki kontrast, większe odstępy w tekście, podkreślenie linków i czytelna czcionka. Ustawienia są zapamiętywane.</li>
+          <li>Link „Przejdź do treści” na początku strony oraz widoczne zaznaczenie aktywnego elementu podczas obsługi klawiaturą.</li>
+          <li>Wyszukiwarka na stronie, otwierana przyciskiem „Szukaj” lub klawiszem <kbd>/</kbd> albo <kbd>Ctrl</kbd> + <kbd>K</kbd>. Klawisz <kbd>Esc</kbd> zamyka wyszukiwarkę, menu i panel ułatwień.</li>
+          <li>Strona dostosowuje się do ustawień urządzenia: trybu ciemnego, ograniczenia animacji i powiększenia tekstu.</li>
+          <li>Informacja o przedszkolu w <a href="tekst-latwy.html">tekście łatwym do czytania</a> oraz strona <a href="jezyk-migowy.html">Język migowy</a>.</li>
+        </ul>
+      </section>
+
+      <section id="a11y-kontakt" aria-labelledby="h-kontakt-a11y">
+        <h2 id="h-kontakt-a11y">Informacje zwrotne i dane kontaktowe</h2>
+        <p>Wszystkie problemy z dostępnością cyfrową tej strony internetowej można zgłaszać do <span id="a11y-osoba">Joanny Czerwińskiej, dyrektora przedszkola</span>, mailowo na adres <span id="a11y-email">p16@przedszkolakoszalin.pl</span> lub telefonicznie pod numerem <span id="a11y-telefon">94 345 26 16</span>. Tą samą drogą można składać wnioski o udostępnienie informacji niedostępnej oraz składać żądania zapewnienia dostępności.</p>
+      </section>
+
+      <section id="a11y-procedura" aria-labelledby="h-procedura">
+        <h2 id="h-procedura">Obsługa wniosków i skarg związanych z dostępnością</h2>
+        <p>Każdy ma prawo:</p>
+        <ul>
+          <li>zgłosić uwagi dotyczące dostępności cyfrowej strony lub jej elementu,</li>
+          <li>zgłosić żądanie zapewnienia dostępności cyfrowej strony lub jej elementu,</li>
+          <li>wnioskować o udostępnienie niedostępnej informacji w innej, alternatywnej formie.</li>
+        </ul>
+        <p>Żądanie musi zawierać:</p>
+        <ul>
+          <li>dane kontaktowe osoby zgłaszającej,</li>
+          <li>wskazanie strony lub elementu strony, której dotyczy żądanie,</li>
+          <li>wskazanie dogodnej formy udostępnienia informacji, jeśli żądanie dotyczy udostępnienia w formie alternatywnej informacji niedostępnej.</li>
+        </ul>
+        <p>Żądanie realizujemy niezwłocznie, nie później niż w ciągu 7 dni od dnia jego wystąpienia. Jeżeli dotrzymanie tego terminu nie jest możliwe, niezwłocznie informujemy o tym wnoszącego żądanie, o terminie realizacji żądania, przy czym termin ten nie może być dłuższy niż 2 miesiące od dnia wystąpienia z żądaniem. Jeżeli zapewnienie dostępności cyfrowej nie jest możliwe, możemy zaproponować alternatywny sposób dostępu do informacji.</p>
+        <p>W przypadku, gdy przedszkole odmówi realizacji żądania zapewnienia dostępności lub alternatywnego sposobu dostępu do informacji, wnoszący żądanie może złożyć skargę w sprawie zapewnienia dostępności cyfrowej strony internetowej lub elementu strony internetowej. Skargę można złożyć do organu prowadzącego:</p>
+        <ul>
+          <li>Gmina Miasto Koszalin, ul. Rynek Staromiejski 6–7, 75-007 Koszalin,</li>
+          <li>e-mail: um.koszalin@um.koszalin.pl, telefon: 94 34 88 600.</li>
+        </ul>
+        <p>Po wyczerpaniu wskazanej wyżej procedury można złożyć wniosek do <a href="https://www.rpo.gov.pl/content/jak-zglosic-sie-do-rzecznika-praw-obywatelskich" target="_blank" rel="noopener">Rzecznika Praw Obywatelskich</a>.</p>
+      </section>
+
+      <section id="a11y-architektura" aria-labelledby="h-architektura">
+        <h2 id="h-architektura">Dostępność architektoniczna</h2>
+        <p>Przedszkole nr 16 w Koszalinie mieści się przy ul. Kornela Makuszyńskiego 9. Teren przedszkola jest ogrodzony. Są dwie furtki i brama wjazdowa od ul. Okulickiego, którą można podjechać pod samo wejście do budynku. Przy przedszkolu nie ma parkingu ani wyznaczonego miejsca parkingowego dla osób z niepełnosprawnościami.</p>
+        <p>Przed głównym i jedynym wejściem do budynku są dwa schody. Nie ma podjazdu dla wózków. Drzwi wejściowe nie otwierają się automatycznie, tylko klamką. Przy drugich drzwiach wejściowych, po lewej stronie, znajduje się dzwonek.</p>
+        <p>W budynku, po lewej stronie, znajduje się kancelaria dyrektora, w której można złożyć dokumenty. Nie ma pokoju dla interesanta ani obniżonych lad. Toaleta znajduje się na parterze i nie jest dostosowana do potrzeb osób poruszających się na wózkach. W budynku nie ma windy, pochylni ani platform, informacji głosowych, oznaczeń w alfabecie Braille’a, oznaczeń kontrastowych ani w druku powiększonym. W budynku nie ma pętli indukcyjnej.</p>
+        <p>Wstęp z psem asystującym: <mark class="todo">[do uzupełnienia: potwierdzić, czy do budynku można wejść z psem asystującym]</mark></p>
+        <p>Osoby, które potrzebują pomocy przy wejściu do budynku, prosimy o wcześniejszy kontakt telefoniczny: 94 345 26 16.</p>
+      </section>
+
+      <section aria-labelledby="h-komunikacja">
+        <h2 id="h-komunikacja">Dostępność informacyjno-komunikacyjna</h2>
+        <p>Osoby głuche i słabosłyszące mogą skorzystać z bezpłatnej pomocy tłumacza języka migowego. Potrzebę należy zgłosić co najmniej 3 dni robocze przed wizytą w przedszkolu. Szczegóły na stronie <a href="jezyk-migowy.html">Język migowy</a>.</p>
+      </section>
+
+      <section id="a11y-aplikacje" aria-labelledby="h-aplikacje">
+        <h2 id="h-aplikacje">Aplikacje mobilne</h2>
+        <p>Przedszkole nie udostępnia aplikacji mobilnych.</p>
+      </section>
+    </article>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h2>Przedszkole nr 16 w Koszalinie</h2>
+      <p>ul. Kornela Makuszyńskiego 9, 75-442 Koszalin<br>tel. 94 345 26 16 · p16@przedszkolakoszalin.pl</p>
+      <p>Organ prowadzący: Gmina Miasto Koszalin</p>
+    </div>
+    <div>
+      <h2>Informacje</h2>
+      <ul>
+        <li><a href="http://pm16.koszalin.ibip.pl/public/" target="_blank" rel="noopener">Biuletyn Informacji Publicznej</a></li>
+        <li><a href="deklaracja-dostepnosci.html">Deklaracja dostępności</a></li>
+        <li><a href="index.html#dok-rodo">Ochrona danych osobowych</a></li>
+      </ul>
+      <a class="bip-badge" href="http://pm16.koszalin.ibip.pl/public/" target="_blank" rel="noopener"><img src="img/bip.jpg" width="206" height="240" alt="Biuletyn Informacji Publicznej Przedszkola nr 16 w Koszalinie"></a>
+    </div>
+    <div>
+      <h2>Serwisy</h2>
+      <ul>
+        <li><a href="https://iprzedszkole.eduportal.koszalin.pl/Authentication/WyborPanel.aspx" target="_blank" rel="noopener">iPrzedszkole</a></li>
+        <li><a href="https://naborp-kandydat.eduportal.koszalin.pl/koszalin" target="_blank" rel="noopener">Nabór elektroniczny</a></li>
+        <li><a href="https://p16.eduportal.koszalin.pl/pl/page/galeria-5" target="_blank" rel="noopener">Galeria</a></li>
+        <li><a href="https://www.facebook.com/groups/2113782585306074" target="_blank" rel="noopener">Grupa na Facebooku</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="legal">
+    <div class="wrap">
+      <p>© <span id="rok">2026</span> Przedszkole nr 16 w Koszalinie</p>
+      <p>Data ostatniej aktualizacji: <time datetime="2026-10-20">20.10.2026</time></p>
+    </div>
+  </div>
+</footer>
+
+<a class="to-top" href="#top" id="to-top" hidden aria-label="Wróć na górę strony"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15 6-6 6 6"/></svg></a>
+
+<script src="assets/main.js"></script>
+</body>
+</html>
